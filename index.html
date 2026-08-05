@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TraceFit — Track your lifestyle. Protect your health.</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================= -->
+  <!-- NAVBAR                                         -->
+  <!-- ============================================= -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+
+      <!-- Logo -->
+      <a href="#" class="navbar__logo" aria-label="TraceFit home">
+        <span class="navbar__logo-icon">
+          <!-- Pulse / ECG mark — doubles as the brand's signature motif -->
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="9" fill="url(#logoGradient)" />
+            <path
+              d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <defs>
+              <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#0F6FFF" />
+                <stop offset="1" stop-color="#14B8A6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="navbar__logo-text">TraceFit</span>
+      </a>
+
+      <!-- Primary nav links -->
+      <nav class="navbar__links" id="navLinks" aria-label="Primary">
+        <a href="#home" class="navbar__link">Home</a>
+        <a href="#features" class="navbar__link">Features</a>
+        <a href="#about" class="navbar__link">About</a>
+        <a href="#contact" class="navbar__link">Contact</a>
+      </nav>
+
+      <!-- Auth actions -->
+      <div class="navbar__actions">
+        <a href="#signin" class="btn btn--ghost">Sign In</a>
+        <a href="#get-started" class="btn btn--primary">
+          Get Started
+          <i data-lucide="arrow-right" class="btn__icon"></i>
+        </a>
+      </div>
+
+      <!-- Mobile menu toggle -->
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i data-lucide="menu" class="icon-open"></i>
+        <i data-lucide="x" class="icon-close"></i>
+      </button>
+    </div>
+
+    <!-- Mobile menu panel -->
+    <div class="navbar__mobile" id="navMobile">
+      <a href="#home" class="navbar__link">Home</a>
+      <a href="#features" class="navbar__link">Features</a>
+      <a href="#about" class="navbar__link">About</a>
+      <a href="#contact" class="navbar__link">Contact</a>
+      <div class="navbar__mobile-actions">
+        <a href="#signin" class="btn btn--ghost btn--block">Sign In</a>
+        <a href="#get-started" class="btn btn--primary btn--block">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================= -->
+  <!-- HERO SECTION                                   -->
+  <!-- ============================================= -->
+  <section class="hero" id="home">
+    <!-- Ambient background glow -->
+    <div class="hero__glow" aria-hidden="true"></div>
+
+    <div class="container hero__inner">
+
+      <!-- ---------- LEFT: copy & CTAs ---------- -->
+      <div class="hero__content">
+
+        <div class="hero__badge fade-in-up">
+          <i data-lucide="sparkles" class="hero__badge-icon"></i>
+          <span>AI-powered Preventive Healthcare</span>
+        </div>
+
+        <h1 class="hero__headline fade-in-up" style="--delay: 0.08s">
+          Track your lifestyle.
+          <br />
+          <span class="hero__headline-accent">Protect your health.</span>
+        </h1>
+
+        <p class="hero__description fade-in-up" style="--delay: 0.16s">
+          TraceFit is more than a fitness tracker. Log your sleep, meals, movement, and
+          vitals every day, and let our AI study your long-term patterns to estimate your
+          risk for diabetes, heart disease, hypertension, stroke, and obesity — before
+          symptoms ever appear.
+        </p>
+
+        <div class="hero__cta fade-in-up" style="--delay: 0.24s">
+          <a href="#get-started" class="btn btn--primary btn--lg">
+            Get Started
+            <i data-lucide="arrow-right" class="btn__icon"></i>
+          </a>
+          <a href="#learn-more" class="btn btn--secondary btn--lg">
+            <i data-lucide="play-circle" class="btn__icon btn__icon--leading"></i>
+            Learn More
+          </a>
+        </div>
+
+        <ul class="hero__trust fade-in-up" style="--delay: 0.32s">
+          <li><i data-lucide="check-circle-2"></i> AI Prediction</li>
+          <li><i data-lucide="check-circle-2"></i> Lifestyle Tracking</li>
+          <li><i data-lucide="check-circle-2"></i> Secure Data</li>
+        </ul>
+      </div>
+
+      <!-- ---------- RIGHT: dashboard mockup ---------- -->
+      <div class="hero__visual fade-in-up" style="--delay: 0.2s">
+        <div class="dashboard" id="dashboard">
+
+          <!-- Dashboard header -->
+          <div class="dashboard__header">
+            <div class="dashboard__title">
+              <span class="dashboard__title-label">Health Overview</span>
+              <span class="dashboard__title-date">Today · Aug 5</span>
+            </div>
+            <div class="dashboard__avatar" aria-hidden="true">JD</div>
+          </div>
+
+          <!-- Row of quick stats -->
+          <div class="dashboard__stats">
+            <div class="stat-card float">
+              <div class="stat-card__icon stat-card__icon--primary">
+                <i data-lucide="footprints"></i>
+              </div>
+              <div class="stat-card__body">
+                <span class="stat-card__value">8,412</span>
+                <span class="stat-card__label">Steps</span>
+              </div>
+            </div>
+
+            <div class="stat-card float" style="--float-delay: 0.4s">
+              <div class="stat-card__icon stat-card__icon--teal">
+                <i data-lucide="moon"></i>
+              </div>
+              <div class="stat-card__body">
+                <span class="stat-card__value">7h 20m</span>
+                <span class="stat-card__label">Sleep</span>
+              </div>
+            </div>
+
+            <div class="stat-card float" style="--float-delay: 0.8s">
+              <div class="stat-card__icon stat-card__icon--amber">
+                <i data-lucide="flame"></i>
+              </div>
+              <div class="stat-card__body">
+                <span class="stat-card__value">2,140</span>
+                <span class="stat-card__label">Calories</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heart rate + weight panel -->
+          <div class="dashboard__panel">
+            <div class="panel-card panel-card--vitals">
+              <div class="panel-card__top">
+                <div class="panel-card__heading">
+                  <i data-lucide="heart-pulse" class="panel-card__heading-icon"></i>
+                  <span>Heart Rate</span>
+                </div>
+                <span class="panel-card__value">72 <small>bpm</small></span>
+              </div>
+              <!-- ECG waveform (signature motif) -->
+              <svg class="ecg" viewBox="0 0 260 60" preserveAspectRatio="none" aria-hidden="true">
+                <polyline
+                  class="ecg__line"
+                  points="0,30 30,30 40,10 50,50 60,30 90,30 100,18 110,42 120,30 260,30"
+                  fill="none"
+                />
+              </svg>
+            </div>
+
+            <div class="panel-card panel-card--weight">
+              <div class="panel-card__top">
+                <div class="panel-card__heading">
+                  <i data-lucide="scale" class="panel-card__heading-icon"></i>
+                  <span>Weight</span>
+                </div>
+                <span class="panel-card__value">68.4 <small>kg</small></span>
+              </div>
+              <div class="mini-bars" aria-hidden="true">
+                <span style="--h: 55%"></span>
+                <span style="--h: 62%"></span>
+                <span style="--h: 48%"></span>
+                <span style="--h: 70%"></span>
+                <span style="--h: 65%"></span>
+                <span style="--h: 58%"></span>
+                <span style="--h: 45%"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Risk section -->
+          <div class="dashboard__risk">
+            <div class="dashboard__risk-heading">
+              <i data-lucide="shield-check"></i>
+              <span>AI Risk Analysis</span>
+            </div>
+
+            <div class="risk-cards">
+              <div class="risk-card">
+                <svg class="risk-ring" viewBox="0 0 64 64">
+                  <circle class="risk-ring__track" cx="32" cy="32" r="26" />
+                  <circle class="risk-ring__value risk-ring__value--low" cx="32" cy="32" r="26" style="--pct: 18" />
+                </svg>
+                <div class="risk-card__text">
+                  <span class="risk-card__percent">18%</span>
+                  <span class="risk-card__label">Diabetes Risk</span>
+                </div>
+                <span class="risk-card__tag risk-card__tag--low">Low</span>
+              </div>
+
+              <div class="risk-card">
+                <svg class="risk-ring" viewBox="0 0 64 64">
+                  <circle class="risk-ring__track" cx="32" cy="32" r="26" />
+                  <circle class="risk-ring__value risk-ring__value--mid" cx="32" cy="32" r="26" style="--pct: 42" />
+                </svg>
+                <div class="risk-card__text">
+                  <span class="risk-card__percent">42%</span>
+                  <span class="risk-card__label">Heart Disease</span>
+                </div>
+                <span class="risk-card__tag risk-card__tag--mid">Moderate</span>
+              </div>
+
+              <div class="risk-card">
+                <svg class="risk-ring" viewBox="0 0 64 64">
+                  <circle class="risk-ring__track" cx="32" cy="32" r="26" />
+                  <circle class="risk-ring__value risk-ring__value--low" cx="32" cy="32" r="26" style="--pct: 9" />
+                </svg>
+                <div class="risk-card__text">
+                  <span class="risk-card__percent">9%</span>
+                  <span class="risk-card__label">Stroke Risk</span>
+                </div>
+                <span class="risk-card__tag risk-card__tag--low">Low</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badge -->
+          <div class="dashboard__floating-badge float" style="--float-delay: 0.6s">
+            <i data-lucide="brain-circuit"></i>
+            <span>AI analysis updated</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- TRUSTED STATISTICS SECTION                     -->
+  <!-- ============================================= -->
+  <section class="stats" id="stats">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="stats__header fade-in-up">
+        <h2 class="stats__title">Trusted Health Facts</h2>
+        <p class="stats__subtitle">
+          Lifestyle plays a significant role in the development of many chronic diseases.
+          TraceFit helps you understand these risks before they become serious.
+        </p>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="stats__grid">
+
+        <div class="fact-card fade-in-up" style="--delay: 0.05s">
+          <div class="fact-card__icon fact-card__icon--primary">
+            <i data-lucide="users"></i>
+          </div>
+          <div class="fact-card__number">
+            <span class="fact-card__prefix">1 in </span><span class="js-count" data-count-to="3" data-count-suffix="">0</span>
+          </div>
+          <p class="fact-card__text">Adults are at risk of chronic diseases due to unhealthy lifestyles.</p>
+        </div>
+
+        <div class="fact-card fade-in-up" style="--delay: 0.12s">
+          <div class="fact-card__icon fact-card__icon--danger">
+            <i data-lucide="heart-pulse"></i>
+          </div>
+          <div class="fact-card__number">
+            <span class="js-count" data-count-to="80" data-count-suffix="%">0</span>
+          </div>
+          <p class="fact-card__text">Heart disease cases can be reduced through healthy lifestyle changes.</p>
+        </div>
+
+        <div class="fact-card fade-in-up" style="--delay: 0.19s">
+          <div class="fact-card__icon fact-card__icon--teal">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <div class="fact-card__number">
+            <span class="js-count" data-count-to="5" data-count-suffix="">0</span><span class="fact-card__suffix"> Diseases</span>
+          </div>
+          <p class="fact-card__text">AI estimates risks for Diabetes, Heart Disease, Hypertension, Stroke, and Obesity.</p>
+        </div>
+
+        <div class="fact-card fade-in-up" style="--delay: 0.26s">
+          <div class="fact-card__icon fact-card__icon--amber">
+            <i data-lucide="clock"></i>
+          </div>
+          <div class="fact-card__number">
+            <span class="js-count" data-count-to="24" data-count-suffix="">0</span><span class="fact-card__suffix">/7</span>
+          </div>
+          <p class="fact-card__text">Track your lifestyle anytime and receive AI-powered health insights.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- PROBLEM SECTION                                -->
+  <!-- ============================================= -->
+  <section class="problem" id="problem">
+    <div class="container problem__inner">
+
+      <!-- ---------- LEFT: badge, title, description ---------- -->
+      <div class="problem__content reveal">
+        <div class="section-badge">
+          <i data-lucide="alert-triangle" class="section-badge__icon"></i>
+          <span>The Problem</span>
+        </div>
+
+        <h2 class="problem__title">
+          Most people track their habits,
+          <br />
+          but not their health risks.
+        </h2>
+
+        <p class="problem__description">
+          Millions of people exercise, count calories, and track their daily habits.
+          However, very few understand how those habits influence their long-term risk
+          of developing chronic lifestyle diseases.
+        </p>
+        <p class="problem__description">
+          Without meaningful insights, it's difficult to know whether your current
+          lifestyle is actually improving your health.
+        </p>
+      </div>
+
+      <!-- ---------- RIGHT: problem cards grid ---------- -->
+      <div class="problem__grid">
+
+        <div class="problem-card reveal" style="--delay: 0.05s">
+          <div class="problem-card__icon problem-card__icon--primary">
+            <i data-lucide="activity"></i>
+          </div>
+          <h3 class="problem-card__title">No Health Insight</h3>
+          <p class="problem-card__text">
+            Fitness apps collect data but rarely explain what those numbers mean for
+            your future health.
+          </p>
+        </div>
+
+        <div class="problem-card reveal" style="--delay: 0.12s">
+          <div class="problem-card__icon problem-card__icon--danger">
+            <i data-lucide="heart-pulse"></i>
+          </div>
+          <h3 class="problem-card__title">Lifestyle Diseases</h3>
+          <p class="problem-card__text">
+            Conditions like diabetes, heart disease, hypertension, stroke, and obesity
+            often develop gradually through daily habits.
+          </p>
+        </div>
+
+        <div class="problem-card reveal" style="--delay: 0.19s">
+          <div class="problem-card__icon problem-card__icon--teal">
+            <i data-lucide="calendar-check"></i>
+          </div>
+          <h3 class="problem-card__title">Hard to Stay Consistent</h3>
+          <p class="problem-card__text">
+            Many people lose motivation because they cannot clearly see the long-term
+            impact of their healthy habits.
+          </p>
+        </div>
+
+        <div class="problem-card reveal" style="--delay: 0.26s">
+          <div class="problem-card__icon problem-card__icon--amber">
+            <i data-lucide="bar-chart-3"></i>
+          </div>
+          <h3 class="problem-card__title">Too Much Data</h3>
+          <p class="problem-card__text">
+            Steps, calories, sleep, and workouts are useful — but without analysis,
+            they're just numbers.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- SOLUTION SECTION                               -->
+  <!-- ============================================= -->
+  <section class="solution" id="solution">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="solution__header reveal">
+        <div class="section-badge">
+          <i data-lucide="lightbulb" class="section-badge__icon"></i>
+          <span>Our Solution</span>
+        </div>
+
+        <h2 class="solution__title">
+          Turn your daily habits
+          <br />
+          into meaningful health insights.
+        </h2>
+
+        <p class="solution__description">
+          TraceFit combines lifestyle tracking with Artificial Intelligence to help you
+          understand how your daily habits influence your long-term health. Instead of
+          simply recording data, TraceFit transforms it into personalized health risk
+          analysis and actionable recommendations.
+        </p>
+      </div>
+
+      <!-- Solution cards -->
+      <div class="solution__grid">
+
+        <div class="solution-card reveal" style="--delay: 0.05s">
+          <div class="solution-card__icon solution-card__icon--primary">
+            <i data-lucide="activity"></i>
+          </div>
+          <h3 class="solution-card__title">Lifestyle Tracking</h3>
+          <p class="solution-card__text">
+            Track your daily activities including exercise, sleep, nutrition, water
+            intake, weight, and other healthy habits.
+          </p>
+        </div>
+
+        <div class="solution-card reveal" style="--delay: 0.12s">
+          <div class="solution-card__icon solution-card__icon--teal">
+            <i data-lucide="brain"></i>
+          </div>
+          <h3 class="solution-card__title">AI Health Analysis</h3>
+          <p class="solution-card__text">
+            AI analyzes your lifestyle patterns to estimate your risk of
+            lifestyle-related diseases.
+          </p>
+        </div>
+
+        <div class="solution-card reveal" style="--delay: 0.19s">
+          <div class="solution-card__icon solution-card__icon--primary">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <h3 class="solution-card__title">Risk Prediction</h3>
+          <p class="solution-card__text">
+            Receive estimated risks for Diabetes, Heart Disease, Hypertension, Stroke,
+            and Obesity.
+          </p>
+        </div>
+
+        <div class="solution-card reveal" style="--delay: 0.26s">
+          <div class="solution-card__icon solution-card__icon--teal">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <h3 class="solution-card__title">Personalized Recommendations</h3>
+          <p class="solution-card__text">
+            Get practical recommendations based on your own lifestyle data to help
+            reduce future health risks.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Horizontal flow illustration -->
+      <div class="flow reveal" style="--delay: 0.1s">
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="footprints"></i>
+          </div>
+          <span class="flow__label">Track Lifestyle</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="brain-circuit"></i>
+          </div>
+          <span class="flow__label">AI Analysis</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="shield-alert"></i>
+          </div>
+          <span class="flow__label">Health Risk Prediction</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <span class="flow__label">Personalized Recommendation</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- FEATURES SECTION                               -->
+  <!-- ============================================= -->
+  <section class="features" id="features">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="features__header reveal">
+        <div class="section-badge">
+          <i data-lucide="layout-grid" class="section-badge__icon"></i>
+          <span>Core Features</span>
+        </div>
+
+        <h2 class="features__title">
+          Everything you need
+          <br />
+          to build a healthier lifestyle.
+        </h2>
+
+        <p class="features__description">
+          TraceFit combines intelligent lifestyle tracking with AI-powered health
+          insights, helping you monitor your habits and understand their long-term
+          impact on your health.
+        </p>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="features__grid">
+
+        <div class="feature-card reveal" style="--delay: 0.04s">
+          <div class="feature-card__icon feature-card__icon--primary">
+            <i data-lucide="activity"></i>
+          </div>
+          <h3 class="feature-card__title">Lifestyle Tracker</h3>
+          <p class="feature-card__text">
+            Record your daily exercise, sleep, meals, water intake, weight, and healthy
+            habits in one place.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--delay: 0.08s">
+          <div class="feature-card__icon feature-card__icon--teal">
+            <i data-lucide="brain"></i>
+          </div>
+          <h3 class="feature-card__title">AI Disease Prediction</h3>
+          <p class="feature-card__text">
+            Estimate your risk of Diabetes, Heart Disease, Hypertension, Stroke, and
+            Obesity using AI.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--delay: 0.12s">
+          <div class="feature-card__icon feature-card__icon--primary">
+            <i data-lucide="layout-dashboard"></i>
+          </div>
+          <h3 class="feature-card__title">Health Dashboard</h3>
+          <p class="feature-card__text">
+            Visualize your progress through clean charts, statistics, and health
+            summaries.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--delay: 0.16s">
+          <div class="feature-card__icon feature-card__icon--teal">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <h3 class="feature-card__title">Personalized Recommendations</h3>
+          <p class="feature-card__text">
+            Receive practical suggestions based on your own lifestyle patterns and AI
+            analysis.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--delay: 0.2s">
+          <div class="feature-card__icon feature-card__icon--primary">
+            <i data-lucide="history"></i>
+          </div>
+          <h3 class="feature-card__title">Progress History</h3>
+          <p class="feature-card__text">
+            Track your health journey over time and compare previous analyses.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--delay: 0.24s">
+          <div class="feature-card__icon feature-card__icon--teal">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <h3 class="feature-card__title">Private &amp; Secure</h3>
+          <p class="feature-card__text">
+            Your health information is stored securely and protected with modern
+            security practices.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- HOW IT WORKS SECTION                           -->
+  <!-- ============================================= -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="how-it-works__header reveal">
+        <div class="section-badge">
+          <i data-lucide="route" class="section-badge__icon"></i>
+          <span>How It Works</span>
+        </div>
+
+        <h2 class="how-it-works__title">
+          Four simple steps
+          <br />
+          to understand your health.
+        </h2>
+
+        <p class="how-it-works__description">
+          TraceFit transforms your daily lifestyle records into meaningful AI-powered
+          health insights through a simple and easy-to-follow process.
+        </p>
+      </div>
+
+      <!-- Timeline: horizontal on desktop, vertical on mobile -->
+      <div class="timeline">
+        <!-- Connecting line, animates in on scroll -->
+        <div class="timeline__track reveal" style="--delay: 0.1s"></div>
+
+        <div class="timeline__step reveal" style="--delay: 0.05s">
+          <div class="timeline__marker">
+            <div class="timeline__icon">
+              <i data-lucide="user-round"></i>
+            </div>
+            <span class="timeline__number">1</span>
+          </div>
+          <h3 class="timeline__title">Create Your Profile</h3>
+          <p class="timeline__text">
+            Set up your personal health profile including age, gender, height, weight,
+            and health goals.
+          </p>
+        </div>
+
+        <div class="timeline__step reveal" style="--delay: 0.14s">
+          <div class="timeline__marker">
+            <div class="timeline__icon">
+              <i data-lucide="clipboard-list"></i>
+            </div>
+            <span class="timeline__number">2</span>
+          </div>
+          <h3 class="timeline__title">Track Your Lifestyle</h3>
+          <p class="timeline__text">
+            Record your daily activities such as workouts, meals, sleep, water intake,
+            and body weight.
+          </p>
+        </div>
+
+        <div class="timeline__step reveal" style="--delay: 0.23s">
+          <div class="timeline__marker">
+            <div class="timeline__icon">
+              <i data-lucide="brain-circuit"></i>
+            </div>
+            <span class="timeline__number">3</span>
+          </div>
+          <h3 class="timeline__title">AI Health Analysis</h3>
+          <p class="timeline__text">
+            After enough lifestyle data has been collected, TraceFit analyzes your
+            habits using AI models.
+          </p>
+        </div>
+
+        <div class="timeline__step reveal" style="--delay: 0.32s">
+          <div class="timeline__marker">
+            <div class="timeline__icon">
+              <i data-lucide="shield-plus"></i>
+            </div>
+            <span class="timeline__number">4</span>
+          </div>
+          <h3 class="timeline__title">Get Personalized Insights</h3>
+          <p class="timeline__text">
+            View disease risk predictions, contributing factors, and practical
+            recommendations to improve your health.
+          </p>
+        </div>
+      </div>
+
+      <!-- Illustration card: end-to-end flow -->
+      <div class="flow flow--five reveal" style="--delay: 0.1s">
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="calendar-check"></i>
+          </div>
+          <span class="flow__label">Daily Tracking</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="database"></i>
+          </div>
+          <span class="flow__label">Lifestyle Data</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="brain-circuit"></i>
+          </div>
+          <span class="flow__label">AI Analysis</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="shield-alert"></i>
+          </div>
+          <span class="flow__label">Disease Risk Prediction</span>
+        </div>
+
+        <div class="flow__arrow" aria-hidden="true">
+          <i data-lucide="arrow-right"></i>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__icon">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <span class="flow__label">Personalized Recommendation</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
