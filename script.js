@@ -120,4 +120,26 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach((el) => revealObserver.observe(el));
   }
 
+  // ---- FAQ accordion ----
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector('.faq-item__question');
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      // Close any other open item so only one answer shows at a time
+      faqItems.forEach((other) => {
+        if (other !== item) {
+          other.classList.remove('is-open');
+          other.querySelector('.faq-item__question').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      item.classList.toggle('is-open', !isOpen);
+      question.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
 });

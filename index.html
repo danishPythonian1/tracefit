@@ -497,51 +497,6 @@
 
       </div>
 
-      <!-- Horizontal flow illustration -->
-      <div class="flow reveal" style="--delay: 0.1s">
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="footprints"></i>
-          </div>
-          <span class="flow__label">Track Lifestyle</span>
-        </div>
-
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="brain-circuit"></i>
-          </div>
-          <span class="flow__label">AI Analysis</span>
-        </div>
-
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="shield-alert"></i>
-          </div>
-          <span class="flow__label">Health Risk Prediction</span>
-        </div>
-
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="sparkles"></i>
-          </div>
-          <span class="flow__label">Personalized Recommendation</span>
-        </div>
-
-      </div>
-
     </div>
   </section>
 
@@ -730,64 +685,535 @@
         </div>
       </div>
 
-      <!-- Illustration card: end-to-end flow -->
-      <div class="flow flow--five reveal" style="--delay: 0.1s">
+    </div>
+  </section>
 
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="calendar-check"></i>
+  <!-- ============================================= -->
+  <!-- AI PREDICTION PREVIEW SECTION                  -->
+  <!-- ============================================= -->
+  <section class="preview" id="ai-preview">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="preview__header reveal">
+        <div class="section-badge">
+          <i data-lucide="brain-circuit" class="section-badge__icon"></i>
+          <span>AI Health Insights</span>
+        </div>
+
+        <h2 class="preview__title">
+          Understand your health
+          <br />
+          through AI-powered insights.
+        </h2>
+
+        <p class="preview__description">
+          After collecting enough lifestyle data, TraceFit analyzes your habits and
+          transforms them into meaningful health insights, estimated disease risks, and
+          personalized recommendations.
+        </p>
+      </div>
+
+      <div class="preview__inner">
+
+        <!-- ---------- LEFT: dashboard preview ---------- -->
+        <div class="preview__visual reveal" style="--delay: 0.1s">
+          <div class="preview-panel">
+
+            <div class="preview-panel__header">
+              <div class="preview-panel__title">
+                <span class="preview-panel__title-label">Lifestyle Score</span>
+                <span class="preview-panel__title-sub">Based on the last 30 days</span>
+              </div>
+              <div class="score-ring">
+                <svg class="score-ring__svg" viewBox="0 0 64 64">
+                  <circle class="score-ring__track" cx="32" cy="32" r="26" />
+                  <circle class="score-ring__value" cx="32" cy="32" r="26" style="--pct: 78" />
+                </svg>
+                <div class="score-ring__text">
+                  <span class="score-ring__number">78</span>
+                  <span class="score-ring__max">/100</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="preview-panel__grid">
+
+              <!-- Weekly Activity Chart -->
+              <div class="insight-card insight-card--activity">
+                <div class="insight-card__top">
+                  <div class="insight-card__heading">
+                    <i data-lucide="activity"></i>
+                    <span>Weekly Activity</span>
+                  </div>
+                  <span class="insight-card__meta">+12% vs last week</span>
+                </div>
+                <div class="activity-bars">
+                  <div class="activity-bars__col"><span style="--h: 45%"></span><small>Mon</small></div>
+                  <div class="activity-bars__col"><span style="--h: 62%"></span><small>Tue</small></div>
+                  <div class="activity-bars__col"><span style="--h: 38%"></span><small>Wed</small></div>
+                  <div class="activity-bars__col"><span style="--h: 74%"></span><small>Thu</small></div>
+                  <div class="activity-bars__col"><span style="--h: 55%"></span><small>Fri</small></div>
+                  <div class="activity-bars__col"><span style="--h: 88%"></span><small>Sat</small></div>
+                  <div class="activity-bars__col"><span style="--h: 66%"></span><small>Sun</small></div>
+                </div>
+              </div>
+
+              <!-- Sleep Trend -->
+              <div class="insight-card insight-card--sleep">
+                <div class="insight-card__heading">
+                  <i data-lucide="moon"></i>
+                  <span>Sleep Trend</span>
+                </div>
+                <span class="insight-card__value">7.2h <small>avg / night</small></span>
+                <svg class="sparkline" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline class="sparkline__line" points="0,26 20,30 40,18 60,22 80,10 100,16 120,6" fill="none" />
+                </svg>
+              </div>
+
+              <!-- Weight Trend -->
+              <div class="insight-card insight-card--weight">
+                <div class="insight-card__heading">
+                  <i data-lucide="scale"></i>
+                  <span>Weight Trend</span>
+                </div>
+                <span class="insight-card__value">
+                  68.4kg
+                  <small class="trend trend--down"><i data-lucide="trending-down"></i>1.2kg</small>
+                </span>
+                <div class="mini-bars mini-bars--sm" aria-hidden="true">
+                  <span style="--h: 70%"></span>
+                  <span style="--h: 62%"></span>
+                  <span style="--h: 65%"></span>
+                  <span style="--h: 55%"></span>
+                  <span style="--h: 58%"></span>
+                  <span style="--h: 48%"></span>
+                  <span style="--h: 45%"></span>
+                </div>
+              </div>
+
+              <!-- Calories Summary -->
+              <div class="insight-card insight-card--calories">
+                <div class="insight-card__heading">
+                  <i data-lucide="flame"></i>
+                  <span>Calories</span>
+                </div>
+                <span class="insight-card__value">2,140 <small>/ 2,400 kcal</small></span>
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 82%"></span>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <span class="flow__label">Daily Tracking</span>
         </div>
 
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
+        <!-- ---------- RIGHT: AI disease risk cards ---------- -->
+        <div class="preview__risks reveal" style="--delay: 0.2s">
 
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="database"></i>
+          <div class="disease-cards">
+
+            <div class="disease-card">
+              <div class="disease-card__top">
+                <div class="disease-card__icon disease-card__icon--medium">
+                  <i data-lucide="droplet"></i>
+                </div>
+                <div class="disease-card__info">
+                  <span class="disease-card__name">Diabetes</span>
+                  <span class="disease-card__badge disease-card__badge--medium">Medium Risk</span>
+                </div>
+                <span class="disease-card__percent">32%</span>
+              </div>
+              <div class="disease-card__bar">
+                <span class="disease-card__bar-fill disease-card__bar-fill--medium" style="--w: 32%"></span>
+              </div>
+            </div>
+
+            <div class="disease-card">
+              <div class="disease-card__top">
+                <div class="disease-card__icon disease-card__icon--low">
+                  <i data-lucide="heart-pulse"></i>
+                </div>
+                <div class="disease-card__info">
+                  <span class="disease-card__name">Heart Disease</span>
+                  <span class="disease-card__badge disease-card__badge--low">Low Risk</span>
+                </div>
+                <span class="disease-card__percent">18%</span>
+              </div>
+              <div class="disease-card__bar">
+                <span class="disease-card__bar-fill disease-card__bar-fill--low" style="--w: 18%"></span>
+              </div>
+            </div>
+
+            <div class="disease-card">
+              <div class="disease-card__top">
+                <div class="disease-card__icon disease-card__icon--medium">
+                  <i data-lucide="gauge"></i>
+                </div>
+                <div class="disease-card__info">
+                  <span class="disease-card__name">Hypertension</span>
+                  <span class="disease-card__badge disease-card__badge--medium">Medium Risk</span>
+                </div>
+                <span class="disease-card__percent">26%</span>
+              </div>
+              <div class="disease-card__bar">
+                <span class="disease-card__bar-fill disease-card__bar-fill--medium" style="--w: 26%"></span>
+              </div>
+            </div>
+
+            <div class="disease-card">
+              <div class="disease-card__top">
+                <div class="disease-card__icon disease-card__icon--low">
+                  <i data-lucide="brain"></i>
+                </div>
+                <div class="disease-card__info">
+                  <span class="disease-card__name">Stroke</span>
+                  <span class="disease-card__badge disease-card__badge--low">Low Risk</span>
+                </div>
+                <span class="disease-card__percent">9%</span>
+              </div>
+              <div class="disease-card__bar">
+                <span class="disease-card__bar-fill disease-card__bar-fill--low" style="--w: 9%"></span>
+              </div>
+            </div>
+
+            <div class="disease-card">
+              <div class="disease-card__top">
+                <div class="disease-card__icon disease-card__icon--high">
+                  <i data-lucide="scale"></i>
+                </div>
+                <div class="disease-card__info">
+                  <span class="disease-card__name">Obesity</span>
+                  <span class="disease-card__badge disease-card__badge--high">High Risk</span>
+                </div>
+                <span class="disease-card__percent">41%</span>
+              </div>
+              <div class="disease-card__bar">
+                <span class="disease-card__bar-fill disease-card__bar-fill--high" style="--w: 41%"></span>
+              </div>
+            </div>
+
           </div>
-          <span class="flow__label">Lifestyle Data</span>
-        </div>
 
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="brain-circuit"></i>
+          <!-- Recommendation card -->
+          <div class="recommendation-card">
+            <div class="recommendation-card__icon">
+              <i data-lucide="sparkles"></i>
+            </div>
+            <h3 class="recommendation-card__title">Top Recommendation</h3>
+            <p class="recommendation-card__text">
+              Based on your recent lifestyle patterns, improving sleep consistency,
+              increasing physical activity, and reducing unhealthy habits could improve
+              your overall health profile.
+            </p>
+            <a href="#analysis" class="btn btn--primary recommendation-card__btn">
+              View Full Analysis
+              <i data-lucide="arrow-right" class="btn__icon"></i>
+            </a>
           </div>
-          <span class="flow__label">AI Analysis</span>
-        </div>
 
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="shield-alert"></i>
-          </div>
-          <span class="flow__label">Disease Risk Prediction</span>
-        </div>
-
-        <div class="flow__arrow" aria-hidden="true">
-          <i data-lucide="arrow-right"></i>
-        </div>
-
-        <div class="flow__step">
-          <div class="flow__icon">
-            <i data-lucide="sparkles"></i>
-          </div>
-          <span class="flow__label">Personalized Recommendation</span>
         </div>
 
       </div>
 
     </div>
   </section>
+
+  <!-- ============================================= -->
+  <!-- FAQ SECTION                                    -->
+  <!-- ============================================= -->
+  <section class="faq" id="faq">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="faq__header reveal">
+        <div class="section-badge">
+          <i data-lucide="circle-help" class="section-badge__icon"></i>
+          <span>FAQ</span>
+        </div>
+
+        <h2 class="faq__title">Frequently asked questions</h2>
+
+        <p class="faq__description">
+          Everything you need to know about how TraceFit works and how it helps you
+          understand your lifestyle health risks.
+        </p>
+      </div>
+
+      <!-- Accordion -->
+      <div class="faq__list">
+
+        <div class="faq-item reveal" style="--delay: 0.04s">
+          <button class="faq-item__question" aria-expanded="false">
+            <span class="faq-item__question-text">What is TraceFit?</span>
+            <span class="faq-item__icon-wrap">
+              <i data-lucide="chevron-down" class="faq-item__icon"></i>
+            </span>
+          </button>
+          <div class="faq-item__answer-wrap">
+            <div class="faq-item__answer-inner">
+              <p class="faq-item__answer">
+                TraceFit is an AI-powered preventive healthcare and lifestyle tracking
+                platform that helps users monitor their habits and understand their
+                potential lifestyle-related health risks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" style="--delay: 0.08s">
+          <button class="faq-item__question" aria-expanded="false">
+            <span class="faq-item__question-text">How does TraceFit predict health risks?</span>
+            <span class="faq-item__icon-wrap">
+              <i data-lucide="chevron-down" class="faq-item__icon"></i>
+            </span>
+          </button>
+          <div class="faq-item__answer-wrap">
+            <div class="faq-item__answer-inner">
+              <p class="faq-item__answer">
+                TraceFit analyzes lifestyle data collected from users and uses machine
+                learning models to estimate the risk of lifestyle-related diseases.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" style="--delay: 0.12s">
+          <button class="faq-item__question" aria-expanded="false">
+            <span class="faq-item__question-text">What diseases can TraceFit analyze?</span>
+            <span class="faq-item__icon-wrap">
+              <i data-lucide="chevron-down" class="faq-item__icon"></i>
+            </span>
+          </button>
+          <div class="faq-item__answer-wrap">
+            <div class="faq-item__answer-inner">
+              <p class="faq-item__answer">
+                TraceFit focuses on five lifestyle-related diseases: Diabetes, Heart
+                Disease, Hypertension, Stroke, and Obesity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" style="--delay: 0.16s">
+          <button class="faq-item__question" aria-expanded="false">
+            <span class="faq-item__question-text">Is TraceFit a replacement for a doctor?</span>
+            <span class="faq-item__icon-wrap">
+              <i data-lucide="chevron-down" class="faq-item__icon"></i>
+            </span>
+          </button>
+          <div class="faq-item__answer-wrap">
+            <div class="faq-item__answer-inner">
+              <p class="faq-item__answer">
+                No. TraceFit is designed for preventive health awareness and does not
+                replace professional medical diagnosis or treatment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" style="--delay: 0.2s">
+          <button class="faq-item__question" aria-expanded="false">
+            <span class="faq-item__question-text">How much data should I provide before getting meaningful insights?</span>
+            <span class="faq-item__icon-wrap">
+              <i data-lucide="chevron-down" class="faq-item__icon"></i>
+            </span>
+          </button>
+          <div class="faq-item__answer-wrap">
+            <div class="faq-item__answer-inner">
+              <p class="faq-item__answer">
+                TraceFit works better when users consistently track their lifestyle over
+                time because longer-term data provides more reliable insights.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CALL TO ACTION SECTION                         -->
+  <!-- ============================================= -->
+  <section class="cta" id="cta">
+    <div class="container">
+
+      <div class="cta__card reveal">
+        <div class="cta__glow cta__glow--a" aria-hidden="true"></div>
+        <div class="cta__glow cta__glow--b" aria-hidden="true"></div>
+
+        <!-- ---------- LEFT: copy & CTAs ---------- -->
+        <div class="cta__content">
+          <h2 class="cta__title">Start understanding your health today.</h2>
+          <p class="cta__description">
+            Track your lifestyle, discover your health risks, and receive AI-powered
+            insights to help you build better habits.
+          </p>
+          <div class="cta__actions">
+            <a href="#get-started" class="btn btn--primary btn--lg">
+              Get Started
+              <i data-lucide="arrow-right" class="btn__icon"></i>
+            </a>
+            <a href="#learn-more" class="btn btn--secondary btn--lg">
+              Learn More
+            </a>
+          </div>
+        </div>
+
+        <!-- ---------- RIGHT: floating AI analysis card ---------- -->
+        <div class="cta__visual">
+          <div class="cta-card float">
+
+            <div class="cta-card__header">
+              <div class="cta-card__badge">
+                <i data-lucide="brain-circuit"></i>
+                <span>AI Analysis</span>
+              </div>
+              <div class="cta-card__live">
+                <span class="cta-card__live-dot"></span>
+                <span>Live</span>
+              </div>
+            </div>
+
+            <div class="cta-card__score">
+              <div class="score-ring">
+                <svg class="score-ring__svg" viewBox="0 0 64 64">
+                  <circle class="score-ring__track" cx="32" cy="32" r="26" />
+                  <circle class="score-ring__value" cx="32" cy="32" r="26" style="--pct: 82" />
+                </svg>
+                <div class="score-ring__text">
+                  <span class="score-ring__number">82</span>
+                  <span class="score-ring__max">/100</span>
+                </div>
+              </div>
+              <div class="cta-card__score-text">
+                <span class="cta-card__score-label">Lifestyle Score</span>
+                <span class="cta-card__score-tag">Excellent</span>
+              </div>
+            </div>
+
+            <ul class="cta-card__stats">
+              <li>
+                <span class="cta-card__stat-icon"><i data-lucide="shield-check"></i></span>
+                <span>5 Diseases Tracked</span>
+              </li>
+              <li>
+                <span class="cta-card__stat-icon"><i data-lucide="clock"></i></span>
+                <span>24/7 Monitoring</span>
+              </li>
+              <li>
+                <span class="cta-card__stat-icon"><i data-lucide="sparkles"></i></span>
+                <span>Personalized Tips</span>
+              </li>
+            </ul>
+
+            <!-- Floating badge -->
+            <div class="cta-card__float-badge float" style="--float-delay: 0.5s">
+              <i data-lucide="sparkles"></i>
+              <span>AI Powered</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- FOOTER SECTION                                 -->
+  <!-- ============================================= -->
+  <footer class="footer" id="footer">
+    <div class="container">
+
+      <div class="footer__top">
+
+        <!-- ---------- Brand column ---------- -->
+        <div class="footer__brand">
+          <a href="#home" class="footer__logo" aria-label="TraceFit home">
+            <span class="footer__logo-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="9" fill="url(#footerLogoGradient)" />
+                <path
+                  d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <defs>
+                  <linearGradient id="footerLogoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0F6FFF" />
+                    <stop offset="1" stop-color="#14B8A6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="footer__logo-text">TraceFit</span>
+          </a>
+
+          <p class="footer__tagline">Track your lifestyle. Protect your health.</p>
+
+          <p class="footer__description">
+            AI-powered preventive healthcare and lifestyle tracking platform that helps
+            users understand and improve their health through intelligent insights.
+          </p>
+        </div>
+
+        <!-- ---------- Product column ---------- -->
+        <div class="footer__col">
+          <h4 class="footer__heading">Product</h4>
+          <ul class="footer__links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#ai-preview">AI Health Analysis</a></li>
+            <li><a href="#solution">Lifestyle Tracker</a></li>
+            <li><a href="#home">Dashboard</a></li>
+          </ul>
+        </div>
+
+        <!-- ---------- Company column ---------- -->
+        <div class="footer__col">
+          <h4 class="footer__heading">Company</h4>
+          <ul class="footer__links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- ---------- Resources column ---------- -->
+        <div class="footer__col">
+          <h4 class="footer__heading">Resources</h4>
+          <ul class="footer__links">
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#support">Support</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- ---------- Bottom bar ---------- -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 TraceFit. All rights reserved.</p>
+
+        <div class="footer__social">
+          <a href="#github" class="footer__social-link" aria-label="GitHub">
+            <i data-lucide="github"></i>
+          </a>
+          <a href="#linkedin" class="footer__social-link" aria-label="LinkedIn">
+            <i data-lucide="linkedin"></i>
+          </a>
+          <a href="#twitter" class="footer__social-link" aria-label="Twitter / X">
+            <i data-lucide="twitter"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
