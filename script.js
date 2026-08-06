@@ -2,6 +2,16 @@
    TraceFit — Navbar & Hero Interactions
 ===================================================== */
 
+// Small reusable debounce so scroll/resize handlers don't run on every
+// single event — shared by the mobile nav and sidebar resize listeners.
+const debounce = (fn, delay = 150) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Initialize Lucide icons ----
@@ -50,11 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close mobile menu if the viewport is resized back to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 860) {
-        closeMobileMenu();
-      }
-    });
+    window.addEventListener(
+      'resize',
+      debounce(() => {
+        if (window.innerWidth > 860) {
+          closeMobileMenu();
+        }
+      })
+    );
   }
 
   // ---- Trusted Statistics: count-up animation on scroll into view ----
@@ -160,6 +173,119 @@ document.addEventListener('DOMContentLoaded', () => {
     dashDate.textContent = formatted;
   }
 
+  // ---- Dashboard: Weekly Activity Charts (Chart.js) ----
+  // Only runs on dashboard.html when Chart.js has loaded and at least
+  // one of the four chart canvases is present.
+  if (typeof Chart !== 'undefined' && document.getElementById('stepsChart')) {
+
+    // Read design-system colors straight from the CSS custom
+    // properties so the charts always match the current palette.
+    const rootStyles = getComputedStyle(document.documentElement);
+    const getColor = (name) => rootStyles.getPropertyValue(name).trim();
+
+    const colors = {
+      primary: getColor('--color-primary'),
+      secondary: getColor('--color-secondary'),
+      border: getColor('--color-border'),
+      textMuted: getColor('--color-text-muted'),
+    };
+
+    const WEEK_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    // Shared Chart.js defaults so every chart looks consistent
+    // without repeating the same options object four times.
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = colors.textMuted;
+
+    const baseScales = {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: { font: { size: 11.5 } },
+      },
+      y: {
+        grid: { color: colors.border },
+        border: { display: false },
+        ticks: { font: { size: 11.5 }, maxTicksLimit: 5 },
+      },
+    };
+
+    const baseTooltip = {
+      backgroundColor: '#0F172A',
+      titleFont: { family: "'Plus Jakarta Sans', sans-serif", weight: '700', size: 12.5 },
+      bodyFont: { family: "'Inter', sans-serif", size: 12 },
+      padding: 10,
+      cornerRadius: 10,
+      displayColors: false,
+    };
+
+    // Small helper so each chart only has to pass its own canvas id,
+    // chart type, data, and a couple of visual tweaks.
+    const renderChart = (canvasId, type, values, { color, fill = false, suffix = '' } = {}) => {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+
+      new Chart(canvas.getContext('2d'), {
+        type,
+        data: {
+          labels: WEEK_LABELS,
+          datasets: [
+            {
+              data: values,
+              borderColor: color,
+              backgroundColor: fill ? `${color}26` : color, // '26' = ~15% alpha hex
+              borderRadius: type === 'bar' ? 6 : 0,
+              borderWidth: type === 'line' ? 2.5 : 0,
+              fill,
+              tension: 0.4,
+              pointRadius: type === 'line' ? 3 : 0,
+              pointBackgroundColor: color,
+              pointBorderColor: '#fff',
+              pointBorderWidth: 2,
+              maxBarThickness: 34,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }, // custom legend chip is rendered in HTML
+            tooltip: {
+              ...baseTooltip,
+              callbacks: {
+                label: (ctx) => `${ctx.formattedValue}${suffix}`,
+              },
+            },
+          },
+          scales: baseScales,
+        },
+      });
+    };
+
+    // Dummy 7-day data — the final (today) value matches the figure
+    // shown on its corresponding Health Overview card for consistency.
+    renderChart('stepsChart', 'line', [6200, 7400, 6800, 9100, 7600, 10200, 8542], {
+      color: colors.primary,
+    });
+
+    renderChart('sleepChart', 'bar', [6.8, 7.2, 6.5, 7.8, 7.0, 8.1, 7.7], {
+      color: colors.secondary,
+      suffix: 'h',
+    });
+
+    renderChart('caloriesChart', 'line', [2050, 1880, 2200, 1750, 2100, 1900, 1950], {
+      color: colors.secondary,
+      fill: true,
+      suffix: ' kcal',
+    });
+
+    renderChart('workoutChart', 'bar', [40, 55, 30, 60, 45, 70, 65], {
+      color: colors.primary,
+      suffix: ' min',
+    });
+  }
+
   // ---- Dashboard: mobile sidebar drawer ----
   // Only runs on dashboard.html — guarded because the landing page
   // has no #sidebar element.
@@ -173,12 +299,19 @@ document.addEventListener('DOMContentLoaded', () => {
       sidebar.classList.add('is-open');
       sidebarOverlay.classList.add('is-visible');
       sidebarToggle.setAttribute('aria-expanded', 'true');
+      // Move focus into the drawer so keyboard users land somewhere useful
+      (sidebarClose || sidebar.querySelector('.sidebar__link'))?.focus();
     };
 
     const closeSidebar = () => {
+      const wasOpen = sidebar.classList.contains('is-open');
       sidebar.classList.remove('is-open');
       sidebarOverlay.classList.remove('is-visible');
       sidebarToggle.setAttribute('aria-expanded', 'false');
+      // Return focus to the toggle button so keyboard focus isn't lost
+      if (wasOpen) {
+        sidebarToggle.focus();
+      }
     };
 
     sidebarToggle.addEventListener('click', openSidebar);
@@ -193,12 +326,22 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', closeSidebar);
     });
 
-    // Close the drawer if the viewport is resized back to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 960) {
+    // Close the drawer with the Escape key (keyboard accessibility)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
         closeSidebar();
       }
     });
+
+    // Close the drawer if the viewport is resized back to desktop
+    window.addEventListener(
+      'resize',
+      debounce(() => {
+        if (window.innerWidth > 960) {
+          closeSidebar();
+        }
+      })
+    );
   }
 
 });

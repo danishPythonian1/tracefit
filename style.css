@@ -59,11 +59,38 @@ body {
   background: var(--color-bg);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Visually hide content while keeping it available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Consistent, visible keyboard-focus ring across every interactive
+   element. Only shows for keyboard/assistive-tech focus (:focus-visible),
+   so pointer/touch interactions stay visually unchanged. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.quick-action:focus-visible,
+.sidebar__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
 
 ul {
@@ -138,6 +165,11 @@ button {
   transform: translateX(3px);
 }
 
+.btn--primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-primary);
+}
+
 .btn--ghost {
   color: var(--color-text);
   padding-left: 14px;
@@ -160,6 +192,11 @@ button {
   color: var(--color-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.btn--secondary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--lg {
@@ -2849,7 +2886,7 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  padding: 12px 14px;
   border-radius: var(--radius-md);
   font-family: var(--font-heading);
   font-weight: 600;
@@ -2894,7 +2931,7 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  padding: 12px 14px;
   border-radius: var(--radius-md);
   font-family: var(--font-heading);
   font-weight: 600;
@@ -3119,6 +3156,9 @@ button {
 /* ---- Page content area ---- */
 .dashboard-content {
   flex: 1;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
   padding: 32px;
 }
 
@@ -3141,6 +3181,7 @@ button {
 }
 
 .status-pill--success { background: rgba(16, 185, 129, 0.12); color: var(--color-success); }
+.status-pill--info    { background: rgba(15, 111, 255, 0.1); color: var(--color-primary); }
 .status-pill--warning { background: rgba(245, 158, 11, 0.14); color: var(--color-warning); }
 .status-pill--danger  { background: rgba(239, 68, 68, 0.12); color: var(--color-danger); }
 
@@ -3377,6 +3418,445 @@ button {
   75% { transform: rotate(10deg); }
 }
 
+/* Section spacing shared by every dashboard content block below */
+.lifestyle-score,
+.risk-summary,
+.charts {
+  margin-bottom: 28px;
+}
+
+/* Reusable section header (title + subtitle) for dashboard sections */
+.dash-section__header {
+  margin-bottom: 20px;
+}
+
+.dash-section__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.dash-section__subtitle {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+}
+
+/* =====================================================
+   Lifestyle Score Card
+===================================================== */
+.lifestyle-score-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 32px;
+  transition: box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.lifestyle-score-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.lifestyle-score-card__main {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding-bottom: 28px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Bigger score-ring variant for the hero card (base rules live with .score-ring) */
+.score-ring--lg {
+  width: 148px;
+  height: 148px;
+  flex-shrink: 0;
+}
+
+.score-ring--lg .score-ring__track,
+.score-ring--lg .score-ring__value {
+  stroke-width: 5;
+}
+
+.score-ring--lg .score-ring__number {
+  font-size: 34px;
+}
+
+.score-ring--lg .score-ring__max {
+  font-size: 14px;
+}
+
+.lifestyle-score-card__info {
+  min-width: 0;
+  flex: 1;
+}
+
+.lifestyle-score-card__heading-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.lifestyle-score-card__heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.lifestyle-score-card__desc {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  max-width: 620px;
+}
+
+/* ---- Mini indicators row ---- */
+.lifestyle-score-card__indicators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.score-indicator__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.score-indicator__label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--color-text);
+}
+
+.score-indicator__value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+}
+
+/* =====================================================
+   AI Health Risk Summary
+===================================================== */
+.risk-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+/* =====================================================
+   Weekly Activity Charts
+===================================================== */
+.charts__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.chart-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.chart-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(15, 111, 255, 0.18);
+}
+
+.chart-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.chart-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15.5px;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 3px;
+}
+
+.chart-card__meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* Small colored trend badge — decoupled from arrow direction so a
+   "down" trend can still read as positive (e.g. lower calories). */
+.chart-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.chart-trend svg {
+  width: 13px;
+  height: 13px;
+}
+
+.chart-trend--positive { background: rgba(16, 185, 129, 0.12); color: var(--color-success); }
+.chart-trend--negative { background: rgba(239, 68, 68, 0.12); color: var(--color-danger); }
+
+/* Clean custom legend (replaces Chart.js's default legend box) */
+.chart-card__legend {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.chart-card__legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.chart-card__legend-dot--primary { background: var(--color-primary); }
+.chart-card__legend-dot--secondary { background: var(--color-secondary); }
+
+.chart-card__canvas-wrap {
+  position: relative;
+  height: 220px;
+}
+
+/* =====================================================
+   Recent Daily Records
+===================================================== */
+.records {
+  margin-bottom: 28px;
+}
+
+.dash-section__header--row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.records__view-all {
+  flex-shrink: 0;
+}
+
+.records-table__wrap {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hint that the table scrolls horizontally — shown only once the table
+   is narrower than its content (see the 720px breakpoint below). */
+.records-table__hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+}
+
+.records-table__hint svg {
+  width: 13px;
+  height: 13px;
+}
+
+.records-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+}
+
+.records-table thead th {
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.records-table tbody td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13.5px;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.records-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.records-table tbody tr {
+  transition: background-color 0.25s var(--ease-out);
+}
+
+.records-table tbody tr:hover {
+  background: rgba(15, 111, 255, 0.03);
+}
+
+.records-table__date {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.records-table__date-day {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--color-text);
+}
+
+.records-table__date-full {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.records-table__cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.records-table__icon {
+  width: 15px;
+  height: 15px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   Quick Actions
+===================================================== */
+.quick-actions {
+  margin-bottom: 28px;
+}
+
+.quick-actions__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.quick-action {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 26px 24px;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.quick-action:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(15, 111, 255, 0.25);
+}
+
+.quick-action:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-action__icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.quick-action:hover .quick-action__icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.quick-action__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.quick-action__icon--primary { background: rgba(15, 111, 255, 0.1); color: var(--color-primary); }
+.quick-action__icon--secondary { background: rgba(20, 184, 166, 0.1); color: var(--color-secondary); }
+
+.quick-action__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.quick-action__desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  padding-right: 24px;
+}
+
+.quick-action__arrow {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: transform 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.quick-action:hover .quick-action__arrow {
+  transform: translate(3px, -3px);
+  color: var(--color-primary);
+}
+
 /* =====================================================
    Dashboard Responsive Behavior
 ===================================================== */
@@ -3418,6 +3898,36 @@ button {
 
   .overview__grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lifestyle-score-card__main {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .lifestyle-score-card__heading-row {
+    justify-content: center;
+  }
+
+  .lifestyle-score-card__desc {
+    max-width: none;
+  }
+
+  .risk-summary__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .records-table__hint {
+    display: flex;
   }
 }
 
@@ -3482,5 +3992,56 @@ button {
 
   .overview__grid {
     grid-template-columns: 1fr;
+  }
+
+  .lifestyle-score-card {
+    padding: 22px;
+  }
+
+  .lifestyle-score-card__indicators {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .risk-summary__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card__canvas-wrap {
+    height: 190px;
+  }
+
+  .dash-section__header--row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .quick-actions__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Extra-small phones (e.g. iPhone SE) — trim padding a little further
+   so cards never feel cramped against the viewport edge. */
+@media (max-width: 400px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+
+  .metric-card,
+  .disease-card,
+  .quick-action,
+  .chart-card {
+    padding: 16px;
+  }
+
+  .lifestyle-score-card {
+    padding: 18px;
+  }
+
+  .records-table thead th,
+  .records-table tbody td {
+    padding: 14px 16px;
   }
 }
