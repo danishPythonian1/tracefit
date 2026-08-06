@@ -4821,3 +4821,153 @@ button {
   background: var(--color-success);
   color: #fff;
 }
+
+
+/* =====================================================
+   Auth status pages — Email Verification / Success / Error
+===================================================== */
+.auth-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-status__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 26px;
+  background: rgba(15, 111, 255, 0.1);
+  color: var(--color-primary);
+  animation: authStatusPop 0.5s var(--ease-out);
+}
+
+.auth-status__icon svg {
+  width: 44px;
+  height: 44px;
+  stroke-width: 1.75;
+}
+
+.auth-status__icon--success {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-success);
+}
+
+.auth-status__icon--error {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-danger);
+}
+
+@keyframes authStatusPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-status__icon {
+    animation: none;
+  }
+}
+
+.auth-status__title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.auth-status__text {
+  max-width: 340px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  margin-bottom: 22px;
+}
+
+/* Sample email pill (Email Verification page) */
+.auth-status__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  margin-bottom: 28px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.auth-status__email svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.auth-status__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.auth-status__note {
+  margin-top: 24px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.auth-status__note strong {
+  display: block;
+  color: var(--color-text);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.auth-status__footer {
+  margin-top: 26px;
+  font-size: 13.5px;
+}
+
+.auth-status__footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.auth-status__footer a:hover {
+  text-decoration: underline;
+}
+
+.auth-status__footer a svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 520px) {
+  .auth-status__icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  .auth-status__icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .auth-status__title {
+    font-size: 22px;
+  }
+}

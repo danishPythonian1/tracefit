@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Something Went Wrong — TraceFit</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="auth-page">
+
+    <!-- ============================================= -->
+    <!-- LEFT: BRANDING / VISUAL PANEL                  -->
+    <!-- ============================================= -->
+    <aside class="auth-visual">
+      <div class="auth-visual__shape auth-visual__shape--1" aria-hidden="true"></div>
+      <div class="auth-visual__shape auth-visual__shape--2" aria-hidden="true"></div>
+      <div class="auth-visual__shape auth-visual__shape--3" aria-hidden="true"></div>
+      <div class="auth-visual__shape auth-visual__shape--4" aria-hidden="true"></div>
+
+      <a href="index.html" class="auth-visual__logo" aria-label="TraceFit home">
+        <span class="auth-visual__logo-icon">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="auth-visual__logo-text">TraceFit</span>
+      </a>
+
+      <div class="auth-visual__copy">
+        <h1 class="auth-visual__headline">Track your lifestyle.<br />Protect your health.</h1>
+        <p class="auth-visual__text">
+          Track your lifestyle, understand your health risks, and receive AI-powered
+          recommendations to build healthier habits.
+        </p>
+      </div>
+
+      <!-- Abstract medical illustration -->
+      <div class="auth-visual__illustration" aria-hidden="true">
+        <div class="auth-visual__ring">
+          <div class="auth-visual__pulse-card">
+            <svg class="auth-visual__pulse-line" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 20H24L30 8L38 32L44 20L48 26L52 20H110" />
+            </svg>
+          </div>
+
+          <span class="auth-visual__badge auth-visual__badge--steps">
+            <i data-lucide="footprints"></i>
+            8,542 steps
+          </span>
+
+          <span class="auth-visual__badge auth-visual__badge--heart">
+            <i data-lucide="heart-pulse"></i>
+            72 bpm
+          </span>
+
+          <span class="auth-visual__badge auth-visual__badge--sleep">
+            <i data-lucide="moon"></i>
+            7.2h sleep
+          </span>
+        </div>
+      </div>
+
+      <div class="auth-visual__footer">
+        <i data-lucide="shield-check"></i>
+        Your health data is encrypted and stored securely.
+      </div>
+    </aside>
+
+    <!-- ============================================= -->
+    <!-- RIGHT: ERROR STATE CARD                        -->
+    <!-- ============================================= -->
+    <main class="auth-main">
+      <div class="auth-card">
+
+        <a href="index.html" class="auth-card__mobile-logo" aria-label="TraceFit home">
+          <span class="navbar__logo-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="9" fill="url(#logoGradientError)" />
+              <path
+                d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <defs>
+                <linearGradient id="logoGradientError" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0F6FFF" />
+                  <stop offset="1" stop-color="#14B8A6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="navbar__logo-text">TraceFit</span>
+        </a>
+
+        <div class="auth-status">
+          <div class="auth-status__icon auth-status__icon--error" aria-hidden="true">
+            <i data-lucide="alert-triangle"></i>
+          </div>
+
+          <h2 class="auth-status__title">Something Went Wrong</h2>
+          <p class="auth-status__text">We couldn't complete your request. Please try again later.</p>
+
+          <div class="auth-status__actions">
+            <button type="button" class="btn btn--primary btn--block btn--lg">
+              <i data-lucide="rotate-cw" class="btn__icon"></i>
+              Try Again
+            </button>
+
+            <a href="login.html" class="btn btn--secondary btn--block btn--lg auth-form__back">
+              <i data-lucide="arrow-left" class="btn__icon"></i>
+              Back to Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
