@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — TraceFit</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
+
+  <!-- ============================================= -->
+  <!-- MOBILE SIDEBAR OVERLAY                         -->
+  <!-- Dims the page behind the sidebar drawer on     -->
+  <!-- mobile/tablet. Clicking it closes the sidebar. -->
+  <!-- ============================================= -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============================================= -->
+  <!-- SIDEBAR NAVIGATION                             -->
+  <!-- ============================================= -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Logo + tagline + mobile close button -->
+    <div class="sidebar__top">
+      <a href="dashboard.html" class="sidebar__logo" aria-label="TraceFit dashboard home">
+        <span class="sidebar__logo-icon">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="9" fill="url(#sidebarLogoGradient)" />
+            <path
+              d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <defs>
+              <linearGradient id="sidebarLogoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#0F6FFF" />
+                <stop offset="1" stop-color="#14B8A6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="sidebar__logo-text">
+          <span class="sidebar__logo-title">TraceFit</span>
+          <span class="sidebar__logo-tagline">Track your lifestyle.</span>
+        </span>
+      </a>
+
+      <button class="sidebar__close" id="sidebarClose" aria-label="Close menu">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <!-- Primary navigation -->
+    <nav class="sidebar__nav" aria-label="Dashboard navigation">
+      <a href="dashboard.html" class="sidebar__link is-active" aria-current="page">
+        <i data-lucide="layout-dashboard" class="sidebar__link-icon"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="sidebar__link">
+        <i data-lucide="calendar-check" class="sidebar__link-icon"></i>
+        <span>Daily Tracker</span>
+      </a>
+      <a href="#" class="sidebar__link">
+        <i data-lucide="history" class="sidebar__link-icon"></i>
+        <span>History</span>
+      </a>
+      <a href="#" class="sidebar__link">
+        <i data-lucide="brain-circuit" class="sidebar__link-icon"></i>
+        <span>AI Health Analysis</span>
+      </a>
+      <a href="#" class="sidebar__link">
+        <i data-lucide="sparkles" class="sidebar__link-icon"></i>
+        <span>Recommendation</span>
+      </a>
+      <a href="#" class="sidebar__link">
+        <i data-lucide="user" class="sidebar__link-icon"></i>
+        <span>Profile</span>
+      </a>
+      <a href="#" class="sidebar__link">
+        <i data-lucide="settings" class="sidebar__link-icon"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <!-- Logout -->
+    <div class="sidebar__bottom">
+      <button type="button" class="sidebar__logout">
+        <i data-lucide="log-out" class="sidebar__link-icon"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ============================================= -->
+  <!-- MAIN AREA (Top Navbar + page content)          -->
+  <!-- ============================================= -->
+  <div class="dashboard-main">
+
+    <!-- ---------- TOP NAVIGATION BAR ---------- -->
+    <header class="topbar" id="topbar">
+
+      <div class="topbar__left">
+        <button class="topbar__menu-btn" id="sidebarToggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+          <i data-lucide="menu"></i>
+        </button>
+
+        <div class="topbar__titles">
+          <h1 class="topbar__title">Dashboard</h1>
+          <p class="topbar__subtitle">Welcome back to TraceFit</p>
+        </div>
+      </div>
+
+      <div class="topbar__right">
+        <label class="topbar__search" for="topbarSearch">
+          <i data-lucide="search" class="topbar__search-icon"></i>
+          <input
+            type="text"
+            id="topbarSearch"
+            class="topbar__search-input"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </label>
+
+        <button class="topbar__icon-btn" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="topbar__badge" aria-hidden="true"></span>
+        </button>
+
+        <button class="topbar__user" type="button" aria-label="Account menu">
+          <span class="topbar__avatar">D</span>
+          <span class="topbar__username">Danish</span>
+          <i data-lucide="chevron-down" class="topbar__user-caret"></i>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- ---------- PAGE CONTENT ---------- -->
+    <!-- Intentionally empty for now — dashboard cards, charts, and -->
+    <!-- widgets will be built in a subsequent step. -->
+    <main class="dashboard-content" id="dashboardContent" aria-label="Dashboard content">
+
+      <!-- ============================================= -->
+      <!-- WELCOME HEADER & TODAY'S SUMMARY               -->
+      <!-- ============================================= -->
+      <section class="dash-welcome reveal">
+
+        <div class="dash-welcome__greeting">
+          <h2 class="dash-welcome__title">
+            Good Morning, Danish
+            <span class="dash-welcome__wave" aria-hidden="true">👋</span>
+          </h2>
+          <p class="dash-welcome__subtitle">
+            Here's your lifestyle summary for today. Keep building healthy habits!
+          </p>
+        </div>
+
+        <div class="dash-welcome__summary">
+          <div class="dash-welcome__date">
+            <i data-lucide="calendar" class="dash-welcome__date-icon"></i>
+            <span id="dashDate">Tuesday, August 5, 2026</span>
+          </div>
+
+          <div class="dash-welcome__score">
+            <div class="dash-welcome__score-info">
+              <span class="dash-welcome__score-label">Current Lifestyle Score</span>
+              <span class="dash-welcome__score-value">82<span class="dash-welcome__score-max">/100</span></span>
+            </div>
+            <span class="status-pill status-pill--success">Good</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============================================= -->
+      <!-- HEALTH OVERVIEW CARDS                          -->
+      <!-- ============================================= -->
+      <section class="overview">
+        <div class="overview__grid">
+
+          <!-- Card 1: Today's Steps -->
+          <div class="metric-card reveal" style="--delay: 0.04s">
+            <div class="metric-card__top">
+              <div class="metric-card__icon metric-card__icon--primary">
+                <i data-lucide="footprints"></i>
+              </div>
+            </div>
+            <span class="metric-card__label">Today's Steps</span>
+            <span class="metric-card__value">8,542</span>
+            <div class="metric-card__progress">
+              <div class="progress-track">
+                <span class="progress-track__fill" style="--w: 85%"></span>
+              </div>
+              <span class="metric-card__goal">Goal: 10,000</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Sleep -->
+          <div class="metric-card reveal" style="--delay: 0.08s">
+            <div class="metric-card__top">
+              <div class="metric-card__icon metric-card__icon--secondary">
+                <i data-lucide="moon-star"></i>
+              </div>
+            </div>
+            <span class="metric-card__label">Sleep</span>
+            <span class="metric-card__value">7h 42m</span>
+            <div class="metric-card__progress">
+              <div class="progress-track">
+                <span class="progress-track__fill" style="--w: 96%"></span>
+              </div>
+              <span class="metric-card__goal">Goal: 8 Hours</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Water Intake -->
+          <div class="metric-card reveal" style="--delay: 0.12s">
+            <div class="metric-card__top">
+              <div class="metric-card__icon metric-card__icon--primary">
+                <i data-lucide="droplets"></i>
+              </div>
+            </div>
+            <span class="metric-card__label">Water Intake</span>
+            <span class="metric-card__value">2.1 L</span>
+            <div class="metric-card__progress">
+              <div class="progress-track">
+                <span class="progress-track__fill" style="--w: 70%"></span>
+              </div>
+              <span class="metric-card__goal">Goal: 3 L</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Calories -->
+          <div class="metric-card reveal" style="--delay: 0.16s">
+            <div class="metric-card__top">
+              <div class="metric-card__icon metric-card__icon--warning">
+                <i data-lucide="flame"></i>
+              </div>
+            </div>
+            <span class="metric-card__label">Calories</span>
+            <span class="metric-card__value">1,950 kcal</span>
+            <div class="metric-card__progress">
+              <div class="progress-track">
+                <span class="progress-track__fill" style="--w: 89%"></span>
+              </div>
+              <span class="metric-card__goal">Goal: 2,200 kcal</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Exercise (goal achieved) -->
+          <div class="metric-card reveal" style="--delay: 0.2s">
+            <div class="metric-card__top">
+              <div class="metric-card__icon metric-card__icon--secondary">
+                <i data-lucide="dumbbell"></i>
+              </div>
+              <span class="metric-card__check" title="Goal achieved">
+                <i data-lucide="check"></i>
+              </span>
+            </div>
+            <span class="metric-card__label">Exercise</span>
+            <span class="metric-card__value">65 min</span>
+            <div class="metric-card__progress">
+              <div class="progress-track">
+                <span class="progress-track__fill" style="--w: 100%"></span>
+              </div>
+              <span class="metric-card__goal">Goal: 60 min</span>
+            </div>
+          </div>
+
+          <!-- Card 6: Weight (trend-based, no fixed goal) -->
+          <div class="metric-card reveal" style="--delay: 0.24s">
+            <div class="metric-card__top">
+              <div class="metric-card__icon metric-card__icon--primary">
+                <i data-lucide="scale"></i>
+              </div>
+              <span class="metric-card__check" title="Trending in the right direction">
+                <i data-lucide="check"></i>
+              </span>
+            </div>
+            <span class="metric-card__label">Weight</span>
+            <span class="metric-card__value">72.4 kg</span>
+            <div class="metric-card__trend-row">
+              <span class="metric-card__goal">Weekly Change</span>
+              <span class="trend trend--down">
+                <i data-lucide="trending-down"></i>
+                0.5 kg
+              </span>
+            </div>
+            <div class="mini-bars mini-bars--sm" aria-hidden="true">
+              <span style="--h: 78%"></span>
+              <span style="--h: 72%"></span>
+              <span style="--h: 74%"></span>
+              <span style="--h: 66%"></span>
+              <span style="--h: 62%"></span>
+              <span style="--h: 58%"></span>
+              <span style="--h: 55%"></span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

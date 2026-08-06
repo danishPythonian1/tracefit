@@ -12,46 +12,50 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Sticky navbar shadow/background on scroll ----
   const navbar = document.getElementById('navbar');
 
-  const handleScroll = () => {
-    if (window.scrollY > 8) {
-      navbar.classList.add('is-scrolled');
-    } else {
-      navbar.classList.remove('is-scrolled');
-    }
-  };
+  if (navbar) {
+    const handleScroll = () => {
+      if (window.scrollY > 8) {
+        navbar.classList.add('is-scrolled');
+      } else {
+        navbar.classList.remove('is-scrolled');
+      }
+    };
 
-  handleScroll(); // set initial state
-  window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // set initial state
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
 
   // ---- Mobile menu toggle ----
   const navToggle = document.getElementById('navToggle');
   const navMobile = document.getElementById('navMobile');
 
-  const closeMobileMenu = () => {
-    navToggle.classList.remove('is-open');
-    navMobile.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  };
+  if (navToggle && navMobile) {
+    const closeMobileMenu = () => {
+      navToggle.classList.remove('is-open');
+      navMobile.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    };
 
-  const toggleMobileMenu = () => {
-    const isOpen = navMobile.classList.toggle('is-open');
-    navToggle.classList.toggle('is-open', isOpen);
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  };
+    const toggleMobileMenu = () => {
+      const isOpen = navMobile.classList.toggle('is-open');
+      navToggle.classList.toggle('is-open', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    };
 
-  navToggle.addEventListener('click', toggleMobileMenu);
+    navToggle.addEventListener('click', toggleMobileMenu);
 
-  // Close mobile menu when a nav link is tapped
-  navMobile.querySelectorAll('.navbar__link, .btn').forEach((el) => {
-    el.addEventListener('click', closeMobileMenu);
-  });
+    // Close mobile menu when a nav link is tapped
+    navMobile.querySelectorAll('.navbar__link, .btn').forEach((el) => {
+      el.addEventListener('click', closeMobileMenu);
+    });
 
-  // Close mobile menu if the viewport is resized back to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 860) {
-      closeMobileMenu();
-    }
-  });
+    // Close mobile menu if the viewport is resized back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) {
+        closeMobileMenu();
+      }
+    });
+  }
 
   // ---- Trusted Statistics: count-up animation on scroll into view ----
   const statsSection = document.getElementById('stats');
@@ -141,5 +145,60 @@ document.addEventListener('DOMContentLoaded', () => {
       question.setAttribute('aria-expanded', String(!isOpen));
     });
   });
+
+  // ---- Dashboard: format today's date in the welcome summary ----
+  const dashDate = document.getElementById('dashDate');
+
+  if (dashDate) {
+    const today = new Date();
+    const formatted = today.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+    dashDate.textContent = formatted;
+  }
+
+  // ---- Dashboard: mobile sidebar drawer ----
+  // Only runs on dashboard.html — guarded because the landing page
+  // has no #sidebar element.
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebarClose = document.getElementById('sidebarClose');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  if (sidebar && sidebarToggle && sidebarOverlay) {
+    const openSidebar = () => {
+      sidebar.classList.add('is-open');
+      sidebarOverlay.classList.add('is-visible');
+      sidebarToggle.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeSidebar = () => {
+      sidebar.classList.remove('is-open');
+      sidebarOverlay.classList.remove('is-visible');
+      sidebarToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    if (sidebarClose) {
+      sidebarClose.addEventListener('click', closeSidebar);
+    }
+
+    // Close the drawer when a nav link is tapped
+    sidebar.querySelectorAll('.sidebar__link').forEach((link) => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    // Close the drawer if the viewport is resized back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        closeSidebar();
+      }
+    });
+  }
 
 });
