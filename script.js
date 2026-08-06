@@ -373,4 +373,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  // ---- Reset Password page: strength meter + live requirements checklist ----
+  const resetPassword = document.getElementById('resetPassword');
+  const resetConfirm = document.getElementById('resetConfirm');
+  const resetConfirmGroup = document.getElementById('resetConfirmGroup');
+  const resetStrength = document.getElementById('passwordStrength');
+
+  if (resetPassword) {
+    const strengthLabel = resetStrength ? resetStrength.querySelector('.password-strength__label') : null;
+
+    const requirements = [
+      { id: 'reqLength', test: (v) => v.length >= 8 },
+      { id: 'reqUppercase', test: (v) => /[A-Z]/.test(v) },
+      { id: 'reqLowercase', test: (v) => /[a-z]/.test(v) },
+      { id: 'reqNumber', test: (v) => /\d/.test(v) },
+    ];
+
+    const getStrength = (value) => {
+      if (!value) return null;
+
+      const metCount = requirements.filter((req) => req.test(value)).length;
+      const hasLength12 = value.length >= 12;
+
+      if (metCount <= 1) return 'weak';
+      if (metCount === 2 || (metCount === 3 && !hasLength12)) return 'medium';
+      if (metCount >= 3) return 'strong';
+      return 'weak';
+    };
+
+    const strengthText = { weak: 'Weak', medium: 'Medium', strong: 'Strong' };
+
+    const updateRequirements = (value) => {
+      requirements.forEach((req) => {
+        const item = document.getElementById(req.id);
+        if (item) item.classList.toggle('is-met', req.test(value));
+      });
+    };
+
+    const updateStrength = (value) => {
+      if (!resetStrength) return;
+      const level = getStrength(value);
+
+      if (!level) {
+        resetStrength.classList.remove('is-visible');
+        return;
+      }
+
+      resetStrength.classList.add('is-visible');
+      resetStrength.setAttribute('data-level', level);
+      if (strengthLabel) strengthLabel.textContent = strengthText[level];
+    };
+
+    resetPassword.addEventListener('input', () => {
+      updateRequirements(resetPassword.value);
+      updateStrength(resetPassword.value);
+    });
+  }
+
+  // ---- Reset Password page: frontend-only confirm-password check ----
+  if (resetPassword && resetConfirm && resetConfirmGroup) {
+    const checkResetPasswordsMatch = () => {
+      const hasValue = resetConfirm.value.length > 0;
+      const matches = resetConfirm.value === resetPassword.value;
+      resetConfirmGroup.classList.toggle('has-error', hasValue && !matches);
+    };
+
+    resetConfirm.addEventListener('input', checkResetPasswordsMatch);
+    resetPassword.addEventListener('input', checkResetPasswordsMatch);
+  }
+
+
 });
