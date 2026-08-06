@@ -344,4 +344,33 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
+  // ---- Auth pages (login.html / register.html): password show/hide ----
+  document.querySelectorAll('.password-toggle').forEach((toggle) => {
+    const input = document.getElementById(toggle.dataset.target);
+    if (!input) return;
+
+    toggle.addEventListener('click', () => {
+      const isVisible = toggle.classList.toggle('is-visible');
+      input.type = isVisible ? 'text' : 'password';
+      toggle.setAttribute('aria-label', isVisible ? 'Hide password' : 'Show password');
+    });
+  });
+
+  // ---- Register page: frontend-only confirm-password check ----
+  const registerPassword = document.getElementById('registerPassword');
+  const registerConfirm = document.getElementById('registerConfirm');
+  const confirmGroup = document.getElementById('registerConfirmGroup');
+
+  if (registerPassword && registerConfirm && confirmGroup) {
+    const checkPasswordsMatch = () => {
+      const hasValue = registerConfirm.value.length > 0;
+      const matches = registerConfirm.value === registerPassword.value;
+      confirmGroup.classList.toggle('has-error', hasValue && !matches);
+    };
+
+    registerConfirm.addEventListener('input', checkPasswordsMatch);
+    registerPassword.addEventListener('input', checkPasswordsMatch);
+  }
+
+
 });

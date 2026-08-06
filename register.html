@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — TraceFit</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="auth-page">
+
+    <!-- ============================================= -->
+    <!-- LEFT: BRANDING / VISUAL PANEL                  -->
+    <!-- ============================================= -->
+    <aside class="auth-visual">
+      <div class="auth-visual__shape auth-visual__shape--1" aria-hidden="true"></div>
+      <div class="auth-visual__shape auth-visual__shape--2" aria-hidden="true"></div>
+      <div class="auth-visual__shape auth-visual__shape--3" aria-hidden="true"></div>
+      <div class="auth-visual__shape auth-visual__shape--4" aria-hidden="true"></div>
+
+      <a href="index.html" class="auth-visual__logo" aria-label="TraceFit home">
+        <span class="auth-visual__logo-icon">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="auth-visual__logo-text">TraceFit</span>
+      </a>
+
+      <div class="auth-visual__copy">
+        <h1 class="auth-visual__headline">Track your lifestyle.<br />Protect your health.</h1>
+        <p class="auth-visual__text">
+          Monitor your daily lifestyle, understand your health risks, and receive
+          personalized AI-powered insights to help you build healthier habits.
+        </p>
+      </div>
+
+      <!-- Abstract medical illustration -->
+      <div class="auth-visual__illustration" aria-hidden="true">
+        <div class="auth-visual__ring">
+          <div class="auth-visual__pulse-card">
+            <svg class="auth-visual__pulse-line" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 20H24L30 8L38 32L44 20L48 26L52 20H110" />
+            </svg>
+          </div>
+
+          <span class="auth-visual__badge auth-visual__badge--steps">
+            <i data-lucide="footprints"></i>
+            8,542 steps
+          </span>
+
+          <span class="auth-visual__badge auth-visual__badge--heart">
+            <i data-lucide="heart-pulse"></i>
+            72 bpm
+          </span>
+
+          <span class="auth-visual__badge auth-visual__badge--sleep">
+            <i data-lucide="moon"></i>
+            7.2h sleep
+          </span>
+        </div>
+      </div>
+
+      <div class="auth-visual__footer">
+        <i data-lucide="shield-check"></i>
+        Your health data is encrypted and stored securely.
+      </div>
+    </aside>
+
+    <!-- ============================================= -->
+    <!-- RIGHT: REGISTER CARD                           -->
+    <!-- ============================================= -->
+    <main class="auth-main">
+      <div class="auth-card">
+
+        <a href="index.html" class="auth-card__mobile-logo" aria-label="TraceFit home">
+          <span class="navbar__logo-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="9" fill="url(#logoGradientRegister)" />
+              <path
+                d="M6 17H10.5L12.5 12L16 22L18.5 15L20 17H26"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <defs>
+                <linearGradient id="logoGradientRegister" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0F6FFF" />
+                  <stop offset="1" stop-color="#14B8A6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="navbar__logo-text">TraceFit</span>
+        </a>
+
+        <div class="auth-card__header">
+          <h2 class="auth-card__title">Create Account</h2>
+          <p class="auth-card__subtitle">Start your healthier lifestyle today.</p>
+        </div>
+
+        <!-- Social login (UI only) -->
+        <div class="auth-social">
+          <button type="button" class="social-btn">
+            <svg class="social-btn__icon" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62Z" fill="#4285F4"/>
+              <path d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.81.54-1.85.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 0 0 9 18Z" fill="#34A853"/>
+              <path d="M3.95 10.7a5.4 5.4 0 0 1 0-3.4V4.97H.95a9 9 0 0 0 0 8.06l3-2.33Z" fill="#FBBC05"/>
+              <path d="M9 3.58c1.32 0 2.5.46 3.44 1.35l2.58-2.58C13.46.9 11.43 0 9 0A9 9 0 0 0 .95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58Z" fill="#EA4335"/>
+            </svg>
+            Google
+          </button>
+          <button type="button" class="social-btn">
+            <svg class="social-btn__icon" viewBox="0 0 17 20" fill="#0F172A" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.02 10.6c-.02-2.1 1.72-3.1 1.8-3.15-.98-1.44-2.5-1.64-3.04-1.66-1.3-.13-2.53.76-3.19.76-.66 0-1.67-.74-2.75-.72-1.42.02-2.72.82-3.45 2.09-1.47 2.55-.38 6.33 1.06 8.4.7 1.02 1.53 2.15 2.62 2.11 1.05-.04 1.45-.68 2.72-.68 1.27 0 1.63.68 2.75.66 1.14-.02 1.86-1.03 2.55-2.06.8-1.18 1.13-2.32 1.15-2.38-.03-.01-2.2-.84-2.22-3.37Z"/>
+              <path d="M11.98 4.03c.58-.7.97-1.67.86-2.63-.83.03-1.85.55-2.45 1.24-.53.62-1 1.61-.87 2.55.93.07 1.87-.47 2.46-1.16Z"/>
+            </svg>
+            Apple
+          </button>
+        </div>
+
+        <div class="auth-divider">OR</div>
+
+        <!-- Register form (frontend only — no real registration) -->
+        <form class="auth-form" id="registerForm" novalidate>
+          <div class="form-group" id="registerNameGroup">
+            <label class="form-label" for="registerName">Full Name</label>
+            <div class="form-input-wrap">
+              <i data-lucide="user" class="form-input-icon"></i>
+              <input
+                type="text"
+                id="registerName"
+                name="name"
+                class="form-input"
+                placeholder="Your full name"
+                autocomplete="name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group" id="registerEmailGroup">
+            <label class="form-label" for="registerEmail">Email Address</label>
+            <div class="form-input-wrap">
+              <i data-lucide="mail" class="form-input-icon"></i>
+              <input
+                type="email"
+                id="registerEmail"
+                name="email"
+                class="form-input"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group" id="registerPasswordGroup">
+            <label class="form-label" for="registerPassword">Password</label>
+            <div class="form-input-wrap">
+              <i data-lucide="lock" class="form-input-icon"></i>
+              <input
+                type="password"
+                id="registerPassword"
+                name="password"
+                class="form-input form-input--password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+                required
+              />
+              <button type="button" class="password-toggle" data-target="registerPassword" aria-label="Show password">
+                <i data-lucide="eye" class="icon-show"></i>
+                <i data-lucide="eye-off" class="icon-hide"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group" id="registerConfirmGroup">
+            <label class="form-label" for="registerConfirm">Confirm Password</label>
+            <div class="form-input-wrap">
+              <i data-lucide="lock" class="form-input-icon"></i>
+              <input
+                type="password"
+                id="registerConfirm"
+                name="confirmPassword"
+                class="form-input form-input--password"
+                placeholder="Re-enter your password"
+                autocomplete="new-password"
+                required
+              />
+              <button type="button" class="password-toggle" data-target="registerConfirm" aria-label="Show password">
+                <i data-lucide="eye" class="icon-show"></i>
+                <i data-lucide="eye-off" class="icon-hide"></i>
+              </button>
+            </div>
+            <span class="form-hint form-hint--error">
+              <i data-lucide="alert-circle"></i>
+              Passwords do not match.
+            </span>
+          </div>
+
+          <label class="checkbox auth-form__terms">
+            <input type="checkbox" name="terms" required />
+            <span>I agree to TraceFit's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
+          </label>
+
+          <button type="submit" class="btn btn--primary btn--block btn--lg">
+            Create Account
+            <i data-lucide="arrow-right" class="btn__icon"></i>
+          </button>
+        </form>
+
+        <p class="auth-card__footer">
+          Already have an account?
+          <a href="login.html">Sign In</a>
+        </p>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
