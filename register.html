@@ -206,6 +206,7 @@
                 class="form-input form-input--password"
                 placeholder="Re-enter your password"
                 autocomplete="new-password"
+                aria-describedby="registerConfirmError"
                 required
               />
               <button type="button" class="password-toggle" data-target="registerConfirm" aria-label="Show password">
@@ -213,7 +214,7 @@
                 <i data-lucide="eye-off" class="icon-hide"></i>
               </button>
             </div>
-            <span class="form-hint form-hint--error">
+            <span class="form-hint form-hint--error" id="registerConfirmError" aria-live="polite">
               <i data-lucide="alert-circle"></i>
               Passwords do not match.
             </span>

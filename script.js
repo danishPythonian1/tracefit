@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
-  // ---- Auth pages (login.html / register.html): password show/hide ----
+  // ---- Auth pages: password show/hide (Login, Register, Reset Password) ----
   document.querySelectorAll('.password-toggle').forEach((toggle) => {
     const input = document.getElementById(toggle.dataset.target);
     if (!input) return;
@@ -356,24 +356,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Register page: frontend-only confirm-password check ----
+  // Shared basic email-format check, used by Login and Forgot Password.
+  const isValidAuthEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+  // ---- Login page: stop the native page reload on submit and surface
+  //      the (already-designed) email-format error inline instead ----
+  const loginForm = document.getElementById('loginForm');
+
+  if (loginForm) {
+    const loginEmail = document.getElementById('loginEmail');
+    const loginEmailGroup = document.getElementById('loginEmailGroup');
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      loginEmailGroup.classList.toggle('has-error', !isValidAuthEmail(loginEmail.value));
+      // Hook up to real authentication once the backend is ready.
+    });
+
+    loginEmail.addEventListener('input', () => loginEmailGroup.classList.remove('has-error'));
+  }
+
+  // ---- Forgot Password page: same submit-reload fix + email check ----
+  const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+
+  if (forgotPasswordForm) {
+    const forgotEmail = document.getElementById('forgotEmail');
+    const forgotEmailGroup = document.getElementById('forgotEmailGroup');
+
+    forgotPasswordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      forgotEmailGroup.classList.toggle('has-error', !isValidAuthEmail(forgotEmail.value));
+      // Hook up to real password-reset delivery once the backend is ready.
+    });
+
+    forgotEmail.addEventListener('input', () => forgotEmailGroup.classList.remove('has-error'));
+  }
+
+  // ---- Register page: confirm-password check + submit-reload fix ----
+  const registerForm = document.getElementById('registerForm');
   const registerPassword = document.getElementById('registerPassword');
   const registerConfirm = document.getElementById('registerConfirm');
-  const confirmGroup = document.getElementById('registerConfirmGroup');
+  const registerConfirmGroup = document.getElementById('registerConfirmGroup');
 
-  if (registerPassword && registerConfirm && confirmGroup) {
+  if (registerPassword && registerConfirm && registerConfirmGroup) {
     const checkPasswordsMatch = () => {
       const hasValue = registerConfirm.value.length > 0;
       const matches = registerConfirm.value === registerPassword.value;
-      confirmGroup.classList.toggle('has-error', hasValue && !matches);
+      registerConfirmGroup.classList.toggle('has-error', hasValue && !matches);
     };
 
     registerConfirm.addEventListener('input', checkPasswordsMatch);
     registerPassword.addEventListener('input', checkPasswordsMatch);
   }
 
+  if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (registerConfirmGroup && registerConfirm && registerPassword) {
+        const matches = registerConfirm.value === registerPassword.value;
+        registerConfirmGroup.classList.toggle('has-error', !matches);
+      }
+      // Hook up to real account creation once the backend is ready.
+    });
+  }
 
   // ---- Reset Password page: strength meter + live requirements checklist ----
+  const resetPasswordForm = document.getElementById('resetPasswordForm');
   const resetPassword = document.getElementById('resetPassword');
   const resetConfirm = document.getElementById('resetConfirm');
   const resetConfirmGroup = document.getElementById('resetConfirmGroup');
@@ -442,5 +491,17 @@ document.addEventListener('DOMContentLoaded', () => {
     resetPassword.addEventListener('input', checkResetPasswordsMatch);
   }
 
+  // ---- Reset Password page: submit-reload fix ----
+  if (resetPasswordForm) {
+    resetPasswordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (resetConfirmGroup && resetConfirm && resetPassword) {
+        const matches = resetConfirm.value === resetPassword.value;
+        resetConfirmGroup.classList.toggle('has-error', !matches);
+      }
+      // Hook up to real password reset once the backend is ready.
+    });
+  }
 
 });

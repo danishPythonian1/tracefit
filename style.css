@@ -4464,7 +4464,7 @@ button {
 }
 
 .form-input--password {
-  padding-right: 44px;
+  padding-right: 46px;
 }
 
 .form-group.has-error .form-input {
@@ -4501,16 +4501,20 @@ button {
 
 .password-toggle {
   position: absolute;
-  right: 13px;
+  right: 5px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-sm);
   color: var(--color-text-muted);
-  transition: color 0.2s var(--ease-out);
+  transition: color 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
 }
 
 .password-toggle:hover {
   color: var(--color-text);
+  background-color: rgba(15, 23, 42, 0.05);
 }
 
 .password-toggle svg {
@@ -4595,6 +4599,16 @@ button {
 /* -----------------------------------------------------
    Responsive
 ----------------------------------------------------- */
+
+/* Common laptop widths (1200–1366px) — tighten side padding a touch
+   so the card doesn't feel like it's fighting the branding panel
+   for room before the layout properly collapses at 960px. */
+@media (max-width: 1240px) {
+  .auth-main {
+    padding: 44px 28px;
+  }
+}
+
 @media (max-width: 1080px) {
   .auth-visual {
     padding: 40px;
@@ -4715,12 +4729,15 @@ button {
   color: var(--color-primary);
 }
 
-/* "Back to Login" secondary button, used under the primary CTA */
+/* "Back to Login" secondary button, used under the primary CTA.
+   Sits just outside the <form> (it navigates, it doesn't submit),
+   so its own margin recreates the form's field spacing rhythm. */
 .auth-form__back {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-top: 18px;
 }
 
 .auth-form__back .btn__icon {
@@ -4894,6 +4911,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
   padding: 10px 18px;
   margin-bottom: 28px;
   background: var(--color-bg);
@@ -4903,6 +4921,7 @@ button {
   font-weight: 600;
   font-size: 14px;
   color: var(--color-text);
+  overflow-wrap: anywhere;
 }
 
 .auth-status__email svg {

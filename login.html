@@ -154,10 +154,11 @@
                 class="form-input"
                 placeholder="you@example.com"
                 autocomplete="email"
+                aria-describedby="loginEmailError"
                 required
               />
             </div>
-            <span class="form-hint form-hint--error">
+            <span class="form-hint form-hint--error" id="loginEmailError" aria-live="polite">
               <i data-lucide="alert-circle"></i>
               Please enter a valid email address.
             </span>
