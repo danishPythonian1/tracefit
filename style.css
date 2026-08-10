@@ -1779,6 +1779,83 @@ button {
   width: fit-content;
 }
 
+/* ---- Structured AI insight highlights (replaces a single long
+   paragraph with a few short, scannable lines) ---- */
+.insight-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.insight-item__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 111, 255, 0.12);
+  color: var(--color-primary);
+  margin-top: 1px;
+}
+
+.insight-item__icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.insight-item--positive .insight-item__icon {
+  background: rgba(16, 185, 129, 0.14);
+  color: var(--color-success);
+}
+
+.insight-item--warning .insight-item__icon {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-danger);
+}
+
+.insight-item__text {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.insight-item__text strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ---- Medical-boundary disclaimer for the risk summary ---- */
+.risk-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 13px 15px;
+  background: rgba(15, 111, 255, 0.06);
+  border: 1px solid rgba(15, 111, 255, 0.16);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.risk-disclaimer svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--color-primary);
+}
+
 /* =====================================================
    FAQ Section
 ===================================================== */
@@ -2691,6 +2768,16 @@ button {
   background: var(--color-bg);
 }
 
+/* Offsets the sticky topbar so jumping to a section via the section
+   navigator doesn't tuck its heading underneath the bar. */
+#todaysData,
+#lifestyleScore,
+#aiRiskSummary,
+#weeklyActivity,
+#recentRecords {
+  scroll-margin-top: calc(var(--topbar-height) + 20px);
+}
+
 /* ---- Mobile overlay (dims page behind the sidebar drawer) ---- */
 .sidebar-overlay {
   position: fixed;
@@ -2989,6 +3076,144 @@ button {
   color: var(--color-text-muted);
 }
 
+/* ---- Section navigator (replaces the search bar) ---- */
+.section-nav {
+  position: relative;
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.section-nav__trigger {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 9px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), color 0.25s var(--ease-out);
+}
+
+.section-nav__trigger:hover {
+  color: var(--color-text);
+  border-color: rgba(15, 111, 255, 0.3);
+}
+
+.section-nav.is-open .section-nav__trigger,
+.section-nav__trigger:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(15, 111, 255, 0.12);
+  color: var(--color-text);
+}
+
+.section-nav__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.section-nav__label {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-nav__caret {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: transform 0.25s var(--ease-out);
+}
+
+.section-nav.is-open .section-nav__caret {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu — closed state sits slightly above and scaled down,
+   then eases into place when .is-open is toggled in script.js. */
+.section-nav__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 60;
+  width: 260px;
+  list-style: none;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.97);
+  transform-origin: top right;
+  pointer-events: none;
+  transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+}
+
+.section-nav.is-open .section-nav__menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.section-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+
+.section-nav__item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: color 0.2s var(--ease-out);
+}
+
+.section-nav__item:hover,
+.section-nav__item:focus-visible {
+  background: rgba(15, 111, 255, 0.08);
+  color: var(--color-primary);
+}
+
+.section-nav__item:hover svg,
+.section-nav__item:focus-visible svg {
+  color: var(--color-primary);
+}
+
+/* Brief highlight applied to a section after jumping to it via the
+   section navigator, so the destination is unmistakable. */
+.dash-jump-highlight {
+  animation: dashJumpHighlight 1.6s var(--ease-out);
+}
+
+@keyframes dashJumpHighlight {
+  0% { box-shadow: 0 0 0 3px rgba(15, 111, 255, 0.25); border-radius: var(--radius-lg); }
+  100% { box-shadow: 0 0 0 3px rgba(15, 111, 255, 0); border-radius: var(--radius-lg); }
+}
+
 /* ---- Notification bell ---- */
 .topbar__icon-btn {
   position: relative;
@@ -3205,12 +3430,119 @@ button {
 }
 
 /* =====================================================
-   Health Overview Cards
+   Today's Data
 ===================================================== */
+.today-data {
+  margin-bottom: 28px;
+}
+
+.today-data__group {
+  margin-bottom: 24px;
+}
+
+.today-data__group:last-child {
+  margin-bottom: 0;
+}
+
+.today-data__group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+.today-data__group-title svg {
+  width: 15px;
+  height: 15px;
+  color: var(--color-secondary);
+}
+
 .overview__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+}
+
+/* ---- Nutrition: compact grouped rows (deliberately lower visual
+   weight than the Exercise & Body metric-cards above, so the two
+   groups don't compete for attention). ---- */
+.nutrient-panel {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 6px 22px;
+}
+
+.nutrient-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.nutrient-row + .nutrient-row {
+  border-top: 1px solid var(--color-border);
+}
+
+.nutrient-row__icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nutrient-row__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nutrient-row__icon--primary { background: rgba(15, 111, 255, 0.1); color: var(--color-primary); }
+.nutrient-row__icon--secondary { background: rgba(20, 184, 166, 0.12); color: var(--color-secondary); }
+.nutrient-row__icon--warning { background: rgba(245, 158, 11, 0.14); color: var(--color-warning); }
+
+.nutrient-row__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.nutrient-row__label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--color-text);
+}
+
+.nutrient-row__goal {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.nutrient-row__bar {
+  flex: 1;
+  min-width: 0;
+}
+
+.nutrient-row__value {
+  width: 90px;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--color-text);
 }
 
 .metric-card {
@@ -3783,6 +4115,11 @@ button {
   .topbar__search {
     width: 200px;
   }
+
+  .section-nav,
+  .section-nav__menu {
+    width: 220px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -3813,6 +4150,11 @@ button {
 
   .topbar__search {
     width: 180px;
+  }
+
+  .section-nav,
+  .section-nav__menu {
+    width: 190px;
   }
 
   .overview__grid {
@@ -3853,6 +4195,30 @@ button {
 @media (max-width: 720px) {
   .topbar__search {
     display: none;
+  }
+
+  .section-nav {
+    width: auto;
+  }
+
+  .section-nav__label {
+    display: none;
+  }
+
+  .section-nav__trigger {
+    padding: 9px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+
+  .section-nav__caret {
+    display: none;
+  }
+
+  .section-nav__menu {
+    width: 240px;
   }
 }
 
@@ -3911,6 +4277,25 @@ button {
 
   .overview__grid {
     grid-template-columns: 1fr;
+  }
+
+  .nutrient-panel {
+    padding: 4px 16px;
+  }
+
+  .nutrient-row {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .nutrient-row__bar {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .nutrient-row__value {
+    width: auto;
+    text-align: left;
   }
 
   .lifestyle-score-card {

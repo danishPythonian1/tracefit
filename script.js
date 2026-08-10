@@ -158,6 +158,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- Dashboard: section navigator ("What to see?" dropdown) ----
+  // Replaces the old top-bar search. Opens a small menu of dashboard
+  // sections; picking one smoothly scrolls there and briefly highlights it.
+  const sectionNav = document.getElementById('sectionNav');
+  const sectionNavTrigger = document.getElementById('sectionNavTrigger');
+  const sectionNavMenu = document.getElementById('sectionNavMenu');
+
+  if (sectionNav && sectionNavTrigger && sectionNavMenu) {
+    const openSectionNav = () => {
+      sectionNavMenu.hidden = false;
+      sectionNavTrigger.setAttribute('aria-expanded', 'true');
+      // Add the animating class on the next frame so the browser
+      // registers the "hidden" -> visible state first, letting the
+      // opacity/transform transition actually play instead of
+      // snapping straight to its open state.
+      requestAnimationFrame(() => sectionNav.classList.add('is-open'));
+    };
+
+    const closeSectionNav = () => {
+      sectionNav.classList.remove('is-open');
+      sectionNavTrigger.setAttribute('aria-expanded', 'false');
+      // Wait for the closing transition before hiding, so it fades
+      // out instead of disappearing instantly.
+      window.setTimeout(() => {
+        if (!sectionNav.classList.contains('is-open')) {
+          sectionNavMenu.hidden = true;
+        }
+      }, 180);
+    };
+
+    sectionNavTrigger.addEventListener('click', () => {
+      const isOpen = sectionNav.classList.contains('is-open');
+      if (isOpen) {
+        closeSectionNav();
+      } else {
+        openSectionNav();
+      }
+    });
+
+    // Close when clicking anywhere outside the control
+    document.addEventListener('click', (e) => {
+      if (sectionNav.classList.contains('is-open') && !sectionNav.contains(e.target)) {
+        closeSectionNav();
+      }
+    });
+
+    // Close with Escape, and return focus to the trigger
+    sectionNav.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSectionNav();
+        sectionNavTrigger.focus();
+      }
+    });
+
+    // Selecting a section: close the menu, scroll smoothly to it, and
+    // apply a brief highlight so the destination is unmistakable.
+    sectionNavMenu.querySelectorAll('.section-nav__item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const target = document.getElementById(item.dataset.target);
+        closeSectionNav();
+
+        if (!target) return;
+
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        target.classList.remove('dash-jump-highlight');
+        // Force reflow so the highlight animation replays even if the
+        // same section is selected twice in a row.
+        void target.offsetWidth;
+        target.classList.add('dash-jump-highlight');
+        target.addEventListener(
+          'animationend',
+          () => target.classList.remove('dash-jump-highlight'),
+          { once: true }
+        );
+      });
+    });
+  }
+
   // ---- Dashboard: format today's date in the welcome summary ----
   const dashDate = document.getElementById('dashDate');
 

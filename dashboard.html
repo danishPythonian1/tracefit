@@ -129,16 +129,53 @@
       </div>
 
       <div class="topbar__right">
-        <label class="topbar__search" for="topbarSearch">
-          <i data-lucide="search" class="topbar__search-icon" aria-hidden="true"></i>
-          <input
-            type="text"
-            id="topbarSearch"
-            class="topbar__search-input"
-            placeholder="Search..."
-            aria-label="Search"
-          />
-        </label>
+        <div class="section-nav" id="sectionNav">
+          <button
+            type="button"
+            class="section-nav__trigger"
+            id="sectionNavTrigger"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="sectionNavMenu"
+          >
+            <i data-lucide="compass" class="section-nav__icon" aria-hidden="true"></i>
+            <span class="section-nav__label">What to see?</span>
+            <i data-lucide="chevron-down" class="section-nav__caret" aria-hidden="true"></i>
+          </button>
+
+          <ul class="section-nav__menu" id="sectionNavMenu" role="listbox" aria-label="Jump to dashboard section" hidden>
+            <li role="option">
+              <button type="button" class="section-nav__item" data-target="todaysData">
+                <i data-lucide="clipboard-list" aria-hidden="true"></i>
+                Today's Data
+              </button>
+            </li>
+            <li role="option">
+              <button type="button" class="section-nav__item" data-target="lifestyleScore">
+                <i data-lucide="gauge-circle" aria-hidden="true"></i>
+                Lifestyle Score
+              </button>
+            </li>
+            <li role="option">
+              <button type="button" class="section-nav__item" data-target="aiRiskSummary">
+                <i data-lucide="brain-circuit" aria-hidden="true"></i>
+                AI Health Risk Summary
+              </button>
+            </li>
+            <li role="option">
+              <button type="button" class="section-nav__item" data-target="weeklyActivity">
+                <i data-lucide="line-chart" aria-hidden="true"></i>
+                Weekly Activity
+              </button>
+            </li>
+            <li role="option">
+              <button type="button" class="section-nav__item" data-target="recentRecords">
+                <i data-lucide="history" aria-hidden="true"></i>
+                Recent Daily Records
+              </button>
+            </li>
+          </ul>
+        </div>
 
         <button class="topbar__icon-btn" aria-label="Notifications">
           <i data-lucide="bell" aria-hidden="true"></i>
@@ -162,7 +199,7 @@
       <!-- ============================================= -->
       <!-- WELCOME HEADER & TODAY'S SUMMARY               -->
       <!-- ============================================= -->
-      <section class="dash-welcome reveal">
+      <section class="dash-welcome">
 
         <div class="dash-welcome__greeting">
           <h2 class="dash-welcome__title">
@@ -192,188 +229,213 @@
       </section>
 
       <!-- ============================================= -->
-      <!-- QUICK ACTIONS                                  -->
+      <!-- TODAY'S DATA                                   -->
       <!-- ============================================= -->
-      <section class="quick-actions reveal">
+      <section class="today-data" id="todaysData">
 
         <div class="dash-section__header">
-          <h3 class="dash-section__title">Quick Actions</h3>
-          <p class="dash-section__subtitle">Perform common actions with a single click.</p>
+          <h3 class="dash-section__title">Today's Data</h3>
+          <p class="dash-section__subtitle">A snapshot of the lifestyle data you've logged so far today.</p>
         </div>
 
-        <div class="quick-actions__grid">
+        <div class="today-data__group">
+          <h4 class="today-data__group-title">
+            <i data-lucide="activity" aria-hidden="true"></i>
+            Exercise &amp; Body
+          </h4>
 
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--primary">
-              <i data-lucide="plus-circle" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">Add Today's Record</span>
-            <span class="quick-action__desc">Log today's lifestyle activities.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
+          <div class="overview__grid">
 
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--secondary">
-              <i data-lucide="brain-circuit" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">View AI Analysis</span>
-            <span class="quick-action__desc">See your latest health risk prediction.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
+            <!-- Card 1: Today's Steps -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--primary">
+                  <i data-lucide="footprints" aria-hidden="true"></i>
+                </div>
+              </div>
+              <span class="metric-card__label">Today's Steps</span>
+              <span class="metric-card__value">8,542</span>
+              <div class="metric-card__progress">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 85%"></span>
+                </div>
+                <span class="metric-card__goal">Goal: 10,000</span>
+              </div>
+            </div>
 
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--primary">
-              <i data-lucide="sparkles" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">View Recommendation</span>
-            <span class="quick-action__desc">Get personalized lifestyle recommendations.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
+            <!-- Card 2: Exercise (goal achieved) -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--secondary">
+                  <i data-lucide="dumbbell" aria-hidden="true"></i>
+                </div>
+                <span class="metric-card__check" title="Goal achieved">
+                  <i data-lucide="check" aria-hidden="true"></i>
+                </span>
+              </div>
+              <span class="metric-card__label">Exercise</span>
+              <span class="metric-card__value">65 min</span>
+              <div class="metric-card__progress">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 100%"></span>
+                </div>
+                <span class="metric-card__goal">Goal: 60 min</span>
+              </div>
+            </div>
 
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--secondary">
-              <i data-lucide="user-round" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">Update Profile</span>
-            <span class="quick-action__desc">Manage your personal health information.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
+            <!-- Card 3: Weight (trend-based, no fixed goal) -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--primary">
+                  <i data-lucide="scale" aria-hidden="true"></i>
+                </div>
+                <span class="metric-card__check" title="Trending in the right direction">
+                  <i data-lucide="check" aria-hidden="true"></i>
+                </span>
+              </div>
+              <span class="metric-card__label">Weight</span>
+              <span class="metric-card__value">72.4 kg</span>
+              <div class="metric-card__trend-row">
+                <span class="metric-card__goal">Weekly Change</span>
+                <span class="trend trend--down">
+                  <i data-lucide="trending-down" aria-hidden="true"></i>
+                  0.5 kg
+                </span>
+              </div>
+              <div class="mini-bars mini-bars--sm" aria-hidden="true">
+                <span style="--h: 78%"></span>
+                <span style="--h: 72%"></span>
+                <span style="--h: 74%"></span>
+                <span style="--h: 66%"></span>
+                <span style="--h: 62%"></span>
+                <span style="--h: 58%"></span>
+                <span style="--h: 55%"></span>
+              </div>
+            </div>
 
+            <!-- Card 4: Sleep -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--secondary">
+                  <i data-lucide="moon-star" aria-hidden="true"></i>
+                </div>
+              </div>
+              <span class="metric-card__label">Sleep</span>
+              <span class="metric-card__value">7h 42m</span>
+              <div class="metric-card__progress">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 96%"></span>
+                </div>
+                <span class="metric-card__goal">Goal: 8 Hours</span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-      </section>
+        <div class="today-data__group">
+          <h4 class="today-data__group-title">
+            <i data-lucide="apple" aria-hidden="true"></i>
+            Nutrition
+          </h4>
 
-      <!-- ============================================= -->
-      <!-- HEALTH OVERVIEW CARDS                          -->
-      <!-- ============================================= -->
-      <section class="overview">
-        <div class="overview__grid">
+          <div class="nutrient-panel">
 
-          <!-- Card 1: Today's Steps -->
-          <div class="metric-card reveal" style="--delay: 0.04s">
-            <div class="metric-card__top">
-              <div class="metric-card__icon metric-card__icon--primary">
-                <i data-lucide="footprints" aria-hidden="true"></i>
-              </div>
-            </div>
-            <span class="metric-card__label">Today's Steps</span>
-            <span class="metric-card__value">8,542</span>
-            <div class="metric-card__progress">
-              <div class="progress-track">
-                <span class="progress-track__fill" style="--w: 85%"></span>
-              </div>
-              <span class="metric-card__goal">Goal: 10,000</span>
-            </div>
-          </div>
-
-          <!-- Card 2: Sleep -->
-          <div class="metric-card reveal" style="--delay: 0.08s">
-            <div class="metric-card__top">
-              <div class="metric-card__icon metric-card__icon--secondary">
-                <i data-lucide="moon-star" aria-hidden="true"></i>
-              </div>
-            </div>
-            <span class="metric-card__label">Sleep</span>
-            <span class="metric-card__value">7h 42m</span>
-            <div class="metric-card__progress">
-              <div class="progress-track">
-                <span class="progress-track__fill" style="--w: 96%"></span>
-              </div>
-              <span class="metric-card__goal">Goal: 8 Hours</span>
-            </div>
-          </div>
-
-          <!-- Card 3: Water Intake -->
-          <div class="metric-card reveal" style="--delay: 0.12s">
-            <div class="metric-card__top">
-              <div class="metric-card__icon metric-card__icon--primary">
-                <i data-lucide="droplets" aria-hidden="true"></i>
-              </div>
-            </div>
-            <span class="metric-card__label">Water Intake</span>
-            <span class="metric-card__value">2.1 L</span>
-            <div class="metric-card__progress">
-              <div class="progress-track">
-                <span class="progress-track__fill" style="--w: 70%"></span>
-              </div>
-              <span class="metric-card__goal">Goal: 3 L</span>
-            </div>
-          </div>
-
-          <!-- Card 4: Calories -->
-          <div class="metric-card reveal" style="--delay: 0.16s">
-            <div class="metric-card__top">
-              <div class="metric-card__icon metric-card__icon--warning">
+            <div class="nutrient-row">
+              <div class="nutrient-row__icon nutrient-row__icon--warning">
                 <i data-lucide="flame" aria-hidden="true"></i>
               </div>
-            </div>
-            <span class="metric-card__label">Calories</span>
-            <span class="metric-card__value">1,950 kcal</span>
-            <div class="metric-card__progress">
-              <div class="progress-track">
-                <span class="progress-track__fill" style="--w: 89%"></span>
+              <div class="nutrient-row__info">
+                <span class="nutrient-row__label">Calories</span>
+                <span class="nutrient-row__goal">Goal: 2,200 kcal</span>
               </div>
-              <span class="metric-card__goal">Goal: 2,200 kcal</span>
+              <div class="nutrient-row__bar">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 89%"></span>
+                </div>
+              </div>
+              <span class="nutrient-row__value">1,950 kcal</span>
             </div>
-          </div>
 
-          <!-- Card 5: Exercise (goal achieved) -->
-          <div class="metric-card reveal" style="--delay: 0.2s">
-            <div class="metric-card__top">
-              <div class="metric-card__icon metric-card__icon--secondary">
-                <i data-lucide="dumbbell" aria-hidden="true"></i>
+            <div class="nutrient-row">
+              <div class="nutrient-row__icon nutrient-row__icon--primary">
+                <i data-lucide="egg" aria-hidden="true"></i>
               </div>
-              <span class="metric-card__check" title="Goal achieved">
-                <i data-lucide="check" aria-hidden="true"></i>
-              </span>
-            </div>
-            <span class="metric-card__label">Exercise</span>
-            <span class="metric-card__value">65 min</span>
-            <div class="metric-card__progress">
-              <div class="progress-track">
-                <span class="progress-track__fill" style="--w: 100%"></span>
+              <div class="nutrient-row__info">
+                <span class="nutrient-row__label">Protein</span>
+                <span class="nutrient-row__goal">Goal: 120 g</span>
               </div>
-              <span class="metric-card__goal">Goal: 60 min</span>
+              <div class="nutrient-row__bar">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 80%"></span>
+                </div>
+              </div>
+              <span class="nutrient-row__value">96 g</span>
             </div>
-          </div>
 
-          <!-- Card 6: Weight (trend-based, no fixed goal) -->
-          <div class="metric-card reveal" style="--delay: 0.24s">
-            <div class="metric-card__top">
-              <div class="metric-card__icon metric-card__icon--primary">
-                <i data-lucide="scale" aria-hidden="true"></i>
+            <div class="nutrient-row">
+              <div class="nutrient-row__icon nutrient-row__icon--secondary">
+                <i data-lucide="wheat" aria-hidden="true"></i>
               </div>
-              <span class="metric-card__check" title="Trending in the right direction">
-                <i data-lucide="check" aria-hidden="true"></i>
-              </span>
+              <div class="nutrient-row__info">
+                <span class="nutrient-row__label">Carbohydrate</span>
+                <span class="nutrient-row__goal">Goal: 250 g</span>
+              </div>
+              <div class="nutrient-row__bar">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 84%"></span>
+                </div>
+              </div>
+              <span class="nutrient-row__value">210 g</span>
             </div>
-            <span class="metric-card__label">Weight</span>
-            <span class="metric-card__value">72.4 kg</span>
-            <div class="metric-card__trend-row">
-              <span class="metric-card__goal">Weekly Change</span>
-              <span class="trend trend--down">
-                <i data-lucide="trending-down" aria-hidden="true"></i>
-                0.5 kg
-              </span>
-            </div>
-            <div class="mini-bars mini-bars--sm" aria-hidden="true">
-              <span style="--h: 78%"></span>
-              <span style="--h: 72%"></span>
-              <span style="--h: 74%"></span>
-              <span style="--h: 66%"></span>
-              <span style="--h: 62%"></span>
-              <span style="--h: 58%"></span>
-              <span style="--h: 55%"></span>
-            </div>
-          </div>
 
+            <div class="nutrient-row">
+              <div class="nutrient-row__icon nutrient-row__icon--warning">
+                <i data-lucide="droplet" aria-hidden="true"></i>
+              </div>
+              <div class="nutrient-row__info">
+                <span class="nutrient-row__label">Fat</span>
+                <span class="nutrient-row__goal">Goal: 70 g</span>
+              </div>
+              <div class="nutrient-row__bar">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 83%"></span>
+                </div>
+              </div>
+              <span class="nutrient-row__value">58 g</span>
+            </div>
+
+            <div class="nutrient-row">
+              <div class="nutrient-row__icon nutrient-row__icon--primary">
+                <i data-lucide="droplets" aria-hidden="true"></i>
+              </div>
+              <div class="nutrient-row__info">
+                <span class="nutrient-row__label">Water Intake</span>
+                <span class="nutrient-row__goal">Goal: 3 L</span>
+              </div>
+              <div class="nutrient-row__bar">
+                <div class="progress-track">
+                  <span class="progress-track__fill" style="--w: 70%"></span>
+                </div>
+              </div>
+              <span class="nutrient-row__value">2.1 L</span>
+            </div>
+
+          </div>
         </div>
+
       </section>
 
       <!-- ============================================= -->
       <!-- LIFESTYLE SCORE CARD                           -->
       <!-- ============================================= -->
-      <section class="lifestyle-score reveal">
+      <section class="lifestyle-score" id="lifestyleScore">
+
+        <div class="dash-section__header">
+          <h3 class="dash-section__title">Lifestyle Score</h3>
+          <p class="dash-section__subtitle">Reflects the quality of the lifestyle data you've logged today.</p>
+        </div>
+
         <div class="lifestyle-score-card">
 
           <div class="lifestyle-score-card__main">
@@ -390,13 +452,13 @@
 
             <div class="lifestyle-score-card__info">
               <div class="lifestyle-score-card__heading-row">
-                <span class="lifestyle-score-card__heading">Lifestyle Score</span>
+                <span class="lifestyle-score-card__heading">Today's Score</span>
                 <span class="status-pill status-pill--success">Good Lifestyle</span>
               </div>
               <p class="lifestyle-score-card__desc">
-                Your recent lifestyle habits indicate a generally healthy routine.
-                Continue maintaining consistent exercise, adequate sleep, and balanced
-                nutrition.
+                Based on today's logged activity, sleep, and nutrition, your lifestyle
+                habits indicate a generally healthy routine. Keep maintaining consistent
+                exercise, adequate sleep, and balanced nutrition.
               </p>
             </div>
           </div>
@@ -440,13 +502,13 @@
       <!-- ============================================= -->
       <!-- AI HEALTH RISK SUMMARY                         -->
       <!-- ============================================= -->
-      <section class="risk-summary reveal">
+      <section class="risk-summary" id="aiRiskSummary">
 
         <div class="dash-section__header">
           <h3 class="dash-section__title">AI Health Risk Summary</h3>
           <p class="dash-section__subtitle">
-            A quick overview of your estimated disease risks. Detailed analysis is
-            available on the AI Health Analysis page.
+            Estimated risk based on your available lifestyle data — a high-level
+            overview only. Detailed analysis lives on the AI Health Analysis page.
           </p>
         </div>
 
@@ -541,18 +603,42 @@
           </div>
           <h3 class="recommendation-card__title">AI Insight</h3>
           <p class="recommendation-card__text">
-            Your current lifestyle indicates that obesity presents the highest estimated
-            risk. Improving physical activity and maintaining a healthier diet could
-            significantly reduce your long-term health risks.
+            Obesity currently shows your highest estimated risk, based on the lifestyle
+            data available. Here's what's driving it:
           </p>
+
+          <ul class="insight-list">
+            <li class="insight-item insight-item--positive">
+              <span class="insight-item__icon"><i data-lucide="thumbs-up" aria-hidden="true"></i></span>
+              <span class="insight-item__text"><strong>Strongest factor:</strong> consistent daily exercise, exceeding your goal.</span>
+            </li>
+            <li class="insight-item insight-item--warning">
+              <span class="insight-item__icon"><i data-lucide="alert-triangle" aria-hidden="true"></i></span>
+              <span class="insight-item__text"><strong>Most notable risk:</strong> Obesity, estimated at 41% — likely tied to calorie and carbohydrate intake trending above goal.</span>
+            </li>
+            <li class="insight-item">
+              <span class="insight-item__icon"><i data-lucide="moon" aria-hidden="true"></i></span>
+              <span class="insight-item__text"><strong>Positive habit:</strong> sleep duration has stayed close to your 8-hour target this week.</span>
+            </li>
+            <li class="insight-item">
+              <span class="insight-item__icon"><i data-lucide="target" aria-hidden="true"></i></span>
+              <span class="insight-item__text"><strong>Room to improve:</strong> nutrition balance — try trimming daily calories and carbs closer to your goals.</span>
+            </li>
+          </ul>
         </div>
+
+        <p class="risk-disclaimer">
+          <i data-lucide="info" aria-hidden="true"></i>
+          These are estimated risks based on available lifestyle data, not a medical
+          diagnosis. Speak with a healthcare professional for guidance specific to you.
+        </p>
 
       </section>
 
       <!-- ============================================= -->
       <!-- WEEKLY ACTIVITY CHARTS                         -->
       <!-- ============================================= -->
-      <section class="charts reveal">
+      <section class="charts" id="weeklyActivity">
 
         <div class="dash-section__header">
           <h3 class="dash-section__title">Weekly Activity</h3>
@@ -609,7 +695,7 @@
       <!-- ============================================= -->
       <!-- RECENT DAILY RECORDS                           -->
       <!-- ============================================= -->
-      <section class="records reveal">
+      <section class="records" id="recentRecords">
 
         <div class="dash-section__header dash-section__header--row">
           <div>
@@ -687,6 +773,58 @@
           <i data-lucide="move-horizontal" aria-hidden="true"></i>
           Scroll sideways to see all columns
         </span>
+
+      </section>
+
+      <!-- ============================================= -->
+      <!-- QUICK ACTIONS                                  -->
+      <!-- ============================================= -->
+      <section class="quick-actions">
+
+        <div class="dash-section__header">
+          <h3 class="dash-section__title">Quick Actions</h3>
+          <p class="dash-section__subtitle">Perform common actions with a single click.</p>
+        </div>
+
+        <div class="quick-actions__grid">
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--primary">
+              <i data-lucide="plus-circle" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">Add Today's Record</span>
+            <span class="quick-action__desc">Log today's lifestyle activities.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--secondary">
+              <i data-lucide="brain-circuit" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">View AI Analysis</span>
+            <span class="quick-action__desc">See your latest health risk prediction.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--primary">
+              <i data-lucide="sparkles" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">View Recommendations</span>
+            <span class="quick-action__desc">Get personalized lifestyle recommendations.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--secondary">
+              <i data-lucide="user-round" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">Update Profile</span>
+            <span class="quick-action__desc">Manage your personal health information.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+        </div>
 
       </section>
 
