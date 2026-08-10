@@ -119,16 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Generic scroll-reveal for sections below the fold ----
   // (Problem Section and any future section using the .reveal class)
+  // Replays every time: the class is added on enter and removed on exit,
+  // so scrolling back up to a section plays the entrance animation again.
   const revealEls = document.querySelectorAll('.reveal');
 
   if (revealEls.length) {
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          }
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
         });
       },
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
