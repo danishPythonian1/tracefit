@@ -174,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- Dashboard: Weekly Activity Charts (Chart.js) ----
-  // Only runs on dashboard.html when Chart.js has loaded and at least
-  // one of the four chart canvases is present.
+  // Only runs on dashboard.html when Chart.js has loaded and the
+  // steps chart canvas is present.
   if (typeof Chart !== 'undefined' && document.getElementById('stepsChart')) {
 
     // Read design-system colors straight from the CSS custom
@@ -272,17 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderChart('sleepChart', 'bar', [6.8, 7.2, 6.5, 7.8, 7.0, 8.1, 7.7], {
       color: colors.secondary,
       suffix: 'h',
-    });
-
-    renderChart('caloriesChart', 'line', [2050, 1880, 2200, 1750, 2100, 1900, 1950], {
-      color: colors.secondary,
-      fill: true,
-      suffix: ' kcal',
-    });
-
-    renderChart('workoutChart', 'bar', [40, 55, 30, 60, 45, 70, 65], {
-      color: colors.primary,
-      suffix: ' min',
     });
   }
 

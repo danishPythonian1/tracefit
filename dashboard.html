@@ -192,6 +192,58 @@
       </section>
 
       <!-- ============================================= -->
+      <!-- QUICK ACTIONS                                  -->
+      <!-- ============================================= -->
+      <section class="quick-actions reveal">
+
+        <div class="dash-section__header">
+          <h3 class="dash-section__title">Quick Actions</h3>
+          <p class="dash-section__subtitle">Perform common actions with a single click.</p>
+        </div>
+
+        <div class="quick-actions__grid">
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--primary">
+              <i data-lucide="plus-circle" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">Add Today's Record</span>
+            <span class="quick-action__desc">Log today's lifestyle activities.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--secondary">
+              <i data-lucide="brain-circuit" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">View AI Analysis</span>
+            <span class="quick-action__desc">See your latest health risk prediction.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--primary">
+              <i data-lucide="sparkles" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">View Recommendation</span>
+            <span class="quick-action__desc">Get personalized lifestyle recommendations.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="#" class="quick-action">
+            <span class="quick-action__icon quick-action__icon--secondary">
+              <i data-lucide="user-round" aria-hidden="true"></i>
+            </span>
+            <span class="quick-action__title">Update Profile</span>
+            <span class="quick-action__desc">Manage your personal health information.</span>
+            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- ============================================= -->
       <!-- HEALTH OVERVIEW CARDS                          -->
       <!-- ============================================= -->
       <section class="overview">
@@ -504,7 +556,7 @@
 
         <div class="dash-section__header">
           <h3 class="dash-section__title">Weekly Activity</h3>
-          <p class="dash-section__subtitle">Your lifestyle trends over the last 7 days.</p>
+          <p class="dash-section__subtitle">Your core lifestyle trends over the last 7 days.</p>
         </div>
 
         <div class="charts__grid">
@@ -551,48 +603,6 @@
             </div>
           </div>
 
-          <!-- Chart 3: Calories Intake (Area) -->
-          <div class="chart-card">
-            <div class="chart-card__header">
-              <div>
-                <h4 class="chart-card__title">Calories Intake</h4>
-                <span class="chart-card__meta">Last 7 days</span>
-              </div>
-              <span class="chart-trend chart-trend--positive">
-                <i data-lucide="trending-down" aria-hidden="true"></i>
-                -6%
-              </span>
-            </div>
-            <div class="chart-card__legend">
-              <span class="chart-card__legend-dot chart-card__legend-dot--secondary"></span>
-              <span>Calories (kcal)</span>
-            </div>
-            <div class="chart-card__canvas-wrap">
-              <canvas id="caloriesChart" role="img" aria-label="Calories intake over the last 7 days"></canvas>
-            </div>
-          </div>
-
-          <!-- Chart 4: Workout Duration (Bar) -->
-          <div class="chart-card">
-            <div class="chart-card__header">
-              <div>
-                <h4 class="chart-card__title">Workout Duration</h4>
-                <span class="chart-card__meta">Last 7 days</span>
-              </div>
-              <span class="chart-trend chart-trend--positive">
-                <i data-lucide="trending-up" aria-hidden="true"></i>
-                +18%
-              </span>
-            </div>
-            <div class="chart-card__legend">
-              <span class="chart-card__legend-dot chart-card__legend-dot--primary"></span>
-              <span>Minutes</span>
-            </div>
-            <div class="chart-card__canvas-wrap">
-              <canvas id="workoutChart" role="img" aria-label="Workout duration over the last 7 days"></canvas>
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -604,7 +614,7 @@
         <div class="dash-section__header dash-section__header--row">
           <div>
             <h3 class="dash-section__title">Recent Daily Records</h3>
-            <p class="dash-section__subtitle">Your latest lifestyle activities and health records.</p>
+            <p class="dash-section__subtitle">Your last 3 days at a glance.</p>
           </div>
           <a href="history.html" class="btn btn--secondary records__view-all">
             View Full History
@@ -614,7 +624,7 @@
 
         <div class="records-table__wrap">
           <table class="records-table">
-            <caption class="sr-only">Your lifestyle activity for the last 7 days</caption>
+            <caption class="sr-only">Your lifestyle activity for the last 3 days</caption>
             <thead>
               <tr>
                 <th scope="col">Date</th>
@@ -669,62 +679,6 @@
                 <td><span class="records-table__cell"><i data-lucide="flame" class="records-table__icon" aria-hidden="true"></i>2,100 kcal</span></td>
                 <td><span class="status-pill status-pill--info">Good</span></td>
               </tr>
-              <tr>
-                <td>
-                  <span class="records-table__date">
-                    <span class="records-table__date-day">Mon</span>
-                    <span class="records-table__date-full">Aug 3, 2026</span>
-                  </span>
-                </td>
-                <td><span class="records-table__cell"><i data-lucide="footprints" class="records-table__icon" aria-hidden="true"></i>9,100</span></td>
-                <td><span class="records-table__cell"><i data-lucide="moon-star" class="records-table__icon" aria-hidden="true"></i>7h 48m</span></td>
-                <td><span class="records-table__cell"><i data-lucide="dumbbell" class="records-table__icon" aria-hidden="true"></i>60 min</span></td>
-                <td><span class="records-table__cell"><i data-lucide="droplets" class="records-table__icon" aria-hidden="true"></i>2.8 L</span></td>
-                <td><span class="records-table__cell"><i data-lucide="flame" class="records-table__icon" aria-hidden="true"></i>1,750 kcal</span></td>
-                <td><span class="status-pill status-pill--success">Excellent</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="records-table__date">
-                    <span class="records-table__date-day">Sun</span>
-                    <span class="records-table__date-full">Aug 2, 2026</span>
-                  </span>
-                </td>
-                <td><span class="records-table__cell"><i data-lucide="footprints" class="records-table__icon" aria-hidden="true"></i>6,800</span></td>
-                <td><span class="records-table__cell"><i data-lucide="moon-star" class="records-table__icon" aria-hidden="true"></i>6h 30m</span></td>
-                <td><span class="records-table__cell"><i data-lucide="dumbbell" class="records-table__icon" aria-hidden="true"></i>30 min</span></td>
-                <td><span class="records-table__cell"><i data-lucide="droplets" class="records-table__icon" aria-hidden="true"></i>2.0 L</span></td>
-                <td><span class="records-table__cell"><i data-lucide="flame" class="records-table__icon" aria-hidden="true"></i>2,200 kcal</span></td>
-                <td><span class="status-pill status-pill--warning">Fair</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="records-table__date">
-                    <span class="records-table__date-day">Sat</span>
-                    <span class="records-table__date-full">Aug 1, 2026</span>
-                  </span>
-                </td>
-                <td><span class="records-table__cell"><i data-lucide="footprints" class="records-table__icon" aria-hidden="true"></i>7,400</span></td>
-                <td><span class="records-table__cell"><i data-lucide="moon-star" class="records-table__icon" aria-hidden="true"></i>7h 12m</span></td>
-                <td><span class="records-table__cell"><i data-lucide="dumbbell" class="records-table__icon" aria-hidden="true"></i>55 min</span></td>
-                <td><span class="records-table__cell"><i data-lucide="droplets" class="records-table__icon" aria-hidden="true"></i>2.6 L</span></td>
-                <td><span class="records-table__cell"><i data-lucide="flame" class="records-table__icon" aria-hidden="true"></i>1,880 kcal</span></td>
-                <td><span class="status-pill status-pill--info">Good</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="records-table__date">
-                    <span class="records-table__date-day">Fri</span>
-                    <span class="records-table__date-full">Jul 31, 2026</span>
-                  </span>
-                </td>
-                <td><span class="records-table__cell"><i data-lucide="footprints" class="records-table__icon" aria-hidden="true"></i>6,200</span></td>
-                <td><span class="records-table__cell"><i data-lucide="moon-star" class="records-table__icon" aria-hidden="true"></i>6h 48m</span></td>
-                <td><span class="records-table__cell"><i data-lucide="dumbbell" class="records-table__icon" aria-hidden="true"></i>40 min</span></td>
-                <td><span class="records-table__cell"><i data-lucide="droplets" class="records-table__icon" aria-hidden="true"></i>1.8 L</span></td>
-                <td><span class="records-table__cell"><i data-lucide="flame" class="records-table__icon" aria-hidden="true"></i>2,050 kcal</span></td>
-                <td><span class="status-pill status-pill--danger">Needs Improvement</span></td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -733,58 +687,6 @@
           <i data-lucide="move-horizontal" aria-hidden="true"></i>
           Scroll sideways to see all columns
         </span>
-
-      </section>
-
-      <!-- ============================================= -->
-      <!-- QUICK ACTIONS                                  -->
-      <!-- ============================================= -->
-      <section class="quick-actions reveal">
-
-        <div class="dash-section__header">
-          <h3 class="dash-section__title">Quick Actions</h3>
-          <p class="dash-section__subtitle">Perform common actions with a single click.</p>
-        </div>
-
-        <div class="quick-actions__grid">
-
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--primary">
-              <i data-lucide="plus-circle" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">Add Today's Record</span>
-            <span class="quick-action__desc">Log today's lifestyle activities.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--secondary">
-              <i data-lucide="brain-circuit" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">View AI Analysis</span>
-            <span class="quick-action__desc">See your latest health risk prediction.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--primary">
-              <i data-lucide="sparkles" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">View Recommendation</span>
-            <span class="quick-action__desc">Get personalized lifestyle recommendations.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" class="quick-action">
-            <span class="quick-action__icon quick-action__icon--secondary">
-              <i data-lucide="user-round" aria-hidden="true"></i>
-            </span>
-            <span class="quick-action__title">Update Profile</span>
-            <span class="quick-action__desc">Manage your personal health information.</span>
-            <i data-lucide="arrow-right" class="quick-action__arrow" aria-hidden="true"></i>
-          </a>
-
-        </div>
 
       </section>
 
