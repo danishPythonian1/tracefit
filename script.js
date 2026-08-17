@@ -353,6 +353,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---- Dashboard: Today's Data "+" actions ----
+  // Frontend-only placeholder for now — shows a brief confirmation
+  // toast instead of a real add/update flow. Wired up to the actual
+  // data entry UI once the backend exists. Delegated to the section
+  // so it keeps working if more metric cards/rows are added later.
+  const todaysData = document.getElementById('todaysData');
+
+  if (todaysData) {
+    let toastTimer;
+
+    const showToast = (message) => {
+      let toast = document.getElementById('dashToast');
+
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'dashToast';
+        toast.className = 'toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        document.body.appendChild(toast);
+      }
+
+      toast.textContent = message;
+      toast.classList.add('is-visible');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+    };
+
+    todaysData.addEventListener('click', (e) => {
+      const addBtn = e.target.closest('.metric-card__add, .nutrient-row__add');
+      if (!addBtn) return;
+
+      const metric = addBtn.dataset.metric || 'entry';
+      showToast(`Add/update "${metric}" — coming soon.`);
+    });
+  }
+
   // ---- Dashboard: mobile sidebar drawer ----
   // Only runs on dashboard.html — guarded because the landing page
   // has no #sidebar element.

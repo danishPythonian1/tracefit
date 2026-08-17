@@ -235,7 +235,7 @@
 
         <div class="dash-section__header">
           <h3 class="dash-section__title">Today's Data</h3>
-          <p class="dash-section__subtitle">A snapshot of the lifestyle data you've logged so far today.</p>
+          <p class="dash-section__subtitle">A snapshot of the lifestyle data you've logged so far today. Use "+" on any metric to add or update it.</p>
         </div>
 
         <div class="today-data__group">
@@ -252,8 +252,11 @@
                 <div class="metric-card__icon metric-card__icon--primary">
                   <i data-lucide="footprints" aria-hidden="true"></i>
                 </div>
+                <button type="button" class="metric-card__add" data-metric="Steps" aria-label="Add or update Steps">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
               </div>
-              <span class="metric-card__label">Today's Steps</span>
+              <span class="metric-card__label">Steps</span>
               <span class="metric-card__value">8,542</span>
               <div class="metric-card__progress">
                 <div class="progress-track">
@@ -263,62 +266,66 @@
               </div>
             </div>
 
-            <!-- Card 2: Exercise (goal achieved) -->
+            <!-- Card 2: Upper Body -->
             <div class="metric-card">
               <div class="metric-card__top">
                 <div class="metric-card__icon metric-card__icon--secondary">
                   <i data-lucide="dumbbell" aria-hidden="true"></i>
                 </div>
-                <span class="metric-card__check" title="Goal achieved">
-                  <i data-lucide="check" aria-hidden="true"></i>
-                </span>
+                <button type="button" class="metric-card__add" data-metric="Upper Body" aria-label="Add or update Upper Body workout">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
               </div>
-              <span class="metric-card__label">Exercise</span>
-              <span class="metric-card__value">65 min</span>
-              <div class="metric-card__progress">
-                <div class="progress-track">
-                  <span class="progress-track__fill" style="--w: 100%"></span>
-                </div>
-                <span class="metric-card__goal">Goal: 60 min</span>
-              </div>
+              <span class="metric-card__label">Upper Body</span>
+              <span class="metric-card__value">30 min</span>
+              <span class="metric-card__goal metric-card__goal--positive">
+                <i data-lucide="check" aria-hidden="true"></i>
+                Logged today
+              </span>
             </div>
 
-            <!-- Card 3: Weight (trend-based, no fixed goal) -->
+            <!-- Card 3: Lower Body -->
             <div class="metric-card">
               <div class="metric-card__top">
                 <div class="metric-card__icon metric-card__icon--primary">
-                  <i data-lucide="scale" aria-hidden="true"></i>
+                  <i data-lucide="bike" aria-hidden="true"></i>
                 </div>
-                <span class="metric-card__check" title="Trending in the right direction">
-                  <i data-lucide="check" aria-hidden="true"></i>
-                </span>
+                <button type="button" class="metric-card__add" data-metric="Lower Body" aria-label="Add or update Lower Body workout">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
               </div>
-              <span class="metric-card__label">Weight</span>
-              <span class="metric-card__value">72.4 kg</span>
-              <div class="metric-card__trend-row">
-                <span class="metric-card__goal">Weekly Change</span>
-                <span class="trend trend--down">
-                  <i data-lucide="trending-down" aria-hidden="true"></i>
-                  0.5 kg
-                </span>
-              </div>
-              <div class="mini-bars mini-bars--sm" aria-hidden="true">
-                <span style="--h: 78%"></span>
-                <span style="--h: 72%"></span>
-                <span style="--h: 74%"></span>
-                <span style="--h: 66%"></span>
-                <span style="--h: 62%"></span>
-                <span style="--h: 58%"></span>
-                <span style="--h: 55%"></span>
-              </div>
+              <span class="metric-card__label">Lower Body</span>
+              <span class="metric-card__value metric-card__value--muted">Not logged</span>
+              <span class="metric-card__goal">Tap + to log</span>
             </div>
 
-            <!-- Card 4: Sleep -->
+            <!-- Card 4: Cardio -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--warning">
+                  <i data-lucide="heart-pulse" aria-hidden="true"></i>
+                </div>
+                <button type="button" class="metric-card__add" data-metric="Cardio" aria-label="Add or update Cardio">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
+              </div>
+              <span class="metric-card__label">Cardio</span>
+              <span class="metric-card__value">20 min</span>
+              <span class="metric-card__goal metric-card__goal--positive">
+                <i data-lucide="check" aria-hidden="true"></i>
+                Logged today
+              </span>
+            </div>
+
+            <!-- Card 5: Sleep -->
             <div class="metric-card">
               <div class="metric-card__top">
                 <div class="metric-card__icon metric-card__icon--secondary">
                   <i data-lucide="moon-star" aria-hidden="true"></i>
                 </div>
+                <button type="button" class="metric-card__add" data-metric="Sleep" aria-label="Add or update Sleep">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
               </div>
               <span class="metric-card__label">Sleep</span>
               <span class="metric-card__value">7h 42m</span>
@@ -326,7 +333,7 @@
                 <div class="progress-track">
                   <span class="progress-track__fill" style="--w: 96%"></span>
                 </div>
-                <span class="metric-card__goal">Goal: 8 Hours</span>
+                <span class="metric-card__goal">Goal: 8 hours</span>
               </div>
             </div>
 
@@ -336,7 +343,7 @@
         <div class="today-data__group">
           <h4 class="today-data__group-title">
             <i data-lucide="apple" aria-hidden="true"></i>
-            Nutrition
+            Macronutrients
           </h4>
 
           <div class="nutrient-panel">
@@ -355,6 +362,9 @@
                 </div>
               </div>
               <span class="nutrient-row__value">1,950 kcal</span>
+              <button type="button" class="nutrient-row__add" data-metric="Calories" aria-label="Add or update Calories">
+                <i data-lucide="plus" aria-hidden="true"></i>
+              </button>
             </div>
 
             <div class="nutrient-row">
@@ -371,6 +381,9 @@
                 </div>
               </div>
               <span class="nutrient-row__value">96 g</span>
+              <button type="button" class="nutrient-row__add" data-metric="Protein" aria-label="Add or update Protein">
+                <i data-lucide="plus" aria-hidden="true"></i>
+              </button>
             </div>
 
             <div class="nutrient-row">
@@ -378,7 +391,7 @@
                 <i data-lucide="wheat" aria-hidden="true"></i>
               </div>
               <div class="nutrient-row__info">
-                <span class="nutrient-row__label">Carbohydrate</span>
+                <span class="nutrient-row__label">Carbohydrates</span>
                 <span class="nutrient-row__goal">Goal: 250 g</span>
               </div>
               <div class="nutrient-row__bar">
@@ -387,6 +400,9 @@
                 </div>
               </div>
               <span class="nutrient-row__value">210 g</span>
+              <button type="button" class="nutrient-row__add" data-metric="Carbohydrates" aria-label="Add or update Carbohydrates">
+                <i data-lucide="plus" aria-hidden="true"></i>
+              </button>
             </div>
 
             <div class="nutrient-row">
@@ -403,22 +419,65 @@
                 </div>
               </div>
               <span class="nutrient-row__value">58 g</span>
+              <button type="button" class="nutrient-row__add" data-metric="Fat" aria-label="Add or update Fat">
+                <i data-lucide="plus" aria-hidden="true"></i>
+              </button>
             </div>
 
-            <div class="nutrient-row">
-              <div class="nutrient-row__icon nutrient-row__icon--primary">
-                <i data-lucide="droplets" aria-hidden="true"></i>
-              </div>
-              <div class="nutrient-row__info">
-                <span class="nutrient-row__label">Water Intake</span>
-                <span class="nutrient-row__goal">Goal: 3 L</span>
-              </div>
-              <div class="nutrient-row__bar">
-                <div class="progress-track">
-                  <span class="progress-track__fill" style="--w: 70%"></span>
+          </div>
+        </div>
+
+        <div class="today-data__group">
+          <h4 class="today-data__group-title">
+            <i data-lucide="shield-alert" aria-hidden="true"></i>
+            Bad Habits &amp; Lifestyle
+          </h4>
+
+          <div class="overview__grid">
+
+            <!-- Card 1: Smoking -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--secondary">
+                  <i data-lucide="cigarette" aria-hidden="true"></i>
                 </div>
+                <button type="button" class="metric-card__add" data-metric="Smoking" aria-label="Add or update Smoking">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
               </div>
-              <span class="nutrient-row__value">2.1 L</span>
+              <span class="metric-card__label">Smoking</span>
+              <span class="metric-card__value">0</span>
+              <span class="metric-card__goal">Cigarettes today</span>
+            </div>
+
+            <!-- Card 2: Stress Rate -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--warning">
+                  <i data-lucide="zap" aria-hidden="true"></i>
+                </div>
+                <button type="button" class="metric-card__add" data-metric="Stress Rate" aria-label="Add or update Stress Rate">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
+              </div>
+              <span class="metric-card__label">Stress Rate</span>
+              <span class="metric-card__value metric-card__value--warning">Moderate</span>
+              <span class="metric-card__goal">Self-rated today</span>
+            </div>
+
+            <!-- Card 3: Sedentary Time -->
+            <div class="metric-card">
+              <div class="metric-card__top">
+                <div class="metric-card__icon metric-card__icon--warning">
+                  <i data-lucide="armchair" aria-hidden="true"></i>
+                </div>
+                <button type="button" class="metric-card__add" data-metric="Sedentary Time" aria-label="Add or update Sedentary Time">
+                  <i data-lucide="plus" aria-hidden="true"></i>
+                </button>
+              </div>
+              <span class="metric-card__label">Sedentary Time</span>
+              <span class="metric-card__value">6h 20m</span>
+              <span class="metric-card__goal">Goal: under 6h</span>
             </div>
 
           </div>
@@ -433,7 +492,7 @@
 
         <div class="dash-section__header">
           <h3 class="dash-section__title">Lifestyle Score</h3>
-          <p class="dash-section__subtitle">Reflects the quality of the lifestyle data you've logged today.</p>
+          <p class="dash-section__subtitle">Your overall lifestyle score — a high-level view based on the data you've logged today.</p>
         </div>
 
         <div class="lifestyle-score-card">
@@ -497,6 +556,12 @@
 
           </div>
         </div>
+
+        <p class="risk-disclaimer">
+          <i data-lucide="info" aria-hidden="true"></i>
+          This score is a general overview based on the lifestyle data you've logged —
+          not a medical assessment.
+        </p>
       </section>
 
       <!-- ============================================= -->

@@ -3330,6 +3330,35 @@ button {
 .status-pill--danger  { background: rgba(239, 68, 68, 0.12); color: var(--color-danger); }
 
 /* =====================================================
+   Reusable toast (brief confirmation feedback)
+===================================================== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 12px);
+  z-index: 500;
+  background: var(--color-text);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  max-width: calc(100vw - 40px);
+  text-align: center;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* =====================================================
    Welcome Header & Today's Summary
 ===================================================== */
 .dash-welcome {
@@ -3465,7 +3494,7 @@ button {
 
 .overview__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
 
@@ -3545,6 +3574,35 @@ button {
   color: var(--color-text);
 }
 
+/* Small circular "add/update" action — shared visual language with
+   .metric-card__add below, sized down to fit a compact row. */
+.nutrient-row__add {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), border-color 0.25s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.nutrient-row__add:hover {
+  background: rgba(15, 111, 255, 0.08);
+  color: var(--color-primary);
+  border-color: rgba(15, 111, 255, 0.3);
+  transform: scale(1.08);
+}
+
+.nutrient-row__add svg {
+  width: 13px;
+  height: 13px;
+}
+
 .metric-card {
   background: var(--color-card);
   border: 1px solid var(--color-border);
@@ -3590,6 +3648,37 @@ button {
 .metric-card__icon--secondary { background: rgba(20, 184, 166, 0.12); color: var(--color-secondary); }
 .metric-card__icon--warning { background: rgba(245, 158, 11, 0.14); color: var(--color-warning); }
 
+/* "Add / update today's data" action — every metric card gets one,
+   in the same top-right slot, so the interaction stays predictable
+   as more metrics are added later. */
+.metric-card__add {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), border-color 0.25s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.metric-card__add:hover,
+.metric-card__add:focus-visible {
+  background: rgba(15, 111, 255, 0.08);
+  color: var(--color-primary);
+  border-color: rgba(15, 111, 255, 0.3);
+  transform: scale(1.08);
+}
+
+.metric-card__add svg {
+  width: 14px;
+  height: 14px;
+}
+
 /* Small "goal achieved" positive indicator */
 .metric-card__check {
   display: flex;
@@ -3623,6 +3712,33 @@ button {
   letter-spacing: -0.02em;
   color: var(--color-text);
   margin-bottom: 16px;
+}
+
+/* Not-yet-logged state (e.g. a workout type with no entry today) */
+.metric-card__value--muted {
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* Elevated / needs-attention lifestyle value (e.g. stress level) */
+.metric-card__value--warning {
+  color: var(--color-warning);
+  font-size: 22px;
+}
+
+/* Positive goal-line variant — pairs with a small check icon to flag
+   a metric that's already been logged today. */
+.metric-card__goal--positive {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-success);
+}
+
+.metric-card__goal--positive svg {
+  width: 12px;
+  height: 12px;
 }
 
 .metric-card__progress {
